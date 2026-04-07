@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #d8e5ff;
+  background-color: #04070f;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-900: #04070f;
+  --bg-850: #070c18;
+  --bg-800: #0b1324;
+  --panel: rgba(11, 19, 36, 0.7);
+  --panel-solid: #101a31;
+  --line: rgba(140, 176, 255, 0.18);
+  --text-soft: #8aa0d4;
+  --neon-cyan: #37f0ff;
+  --neon-blue: #4a6cff;
+  --neon-green: #76ffbf;
+  --neon-magenta: #ff5af1;
+  --glow-cyan: 0 0 28px rgba(55, 240, 255, 0.4);
+  --glow-blue: 0 0 28px rgba(74, 108, 255, 0.35);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #eaf2ff;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(74, 108, 255, 0.2), transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(55, 240, 255, 0.17), transparent 30%),
+    radial-gradient(circle at 65% 85%, rgba(118, 255, 191, 0.12), transparent 30%),
+    linear-gradient(180deg, #03060d 0%, #04070f 30%, #080f1d 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: "Orbitron", sans-serif;
+}
+
+p,
+a,
+span,
+button,
+input,
+textarea,
+label {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050a16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-blue), var(--neon-cyan));
+  border-radius: 5px;
+  border: 2px solid #050a16;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-green));
+}
+
+.section-shell {
+  position: relative;
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  inset: 1.5rem 1rem;
+  border: 1px solid rgba(140, 176, 255, 0.1);
+  border-radius: 2.25rem;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .section-shell::before {
+    inset: 1rem 0.6rem;
+    border-radius: 1.5rem;
+  }
+}
+
+.neon-title {
+  color: #eef4ff;
+  text-shadow: var(--glow-blue);
+}
+
+.neon-accent {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: rgba(8, 15, 31, 0.8);
+  color: #b8ccfa;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.panel {
+  background: linear-gradient(145deg, rgba(12, 21, 41, 0.88), rgba(8, 14, 28, 0.92));
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 15px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 1.5rem;
+}
+
+.panel-hover {
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.panel-hover:hover {
+  transform: translateY(-6px);
+  border-color: rgba(55, 240, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--glow-cyan);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(90, 120, 190, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 120, 190, 0.15) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 85%);
+  opacity: 0.18;
+}
+
+.scanline {
+  background: linear-gradient(180deg, transparent 0%, rgba(80, 230, 255, 0.08) 50%, transparent 100%);
+  animation: scanline 7s linear infinite;
+}
+
+@keyframes scanline {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(220%);
+  }
+}
