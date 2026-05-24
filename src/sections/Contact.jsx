@@ -57,7 +57,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Email</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">yashika.sapra@example.com</p>
+                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.email}</p>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Phone</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">+91 98765 43210</p>
+                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.phone}</p>
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Location</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">Delhi, India</p>
+                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.address}</p>
                             </div>
                         </div>
 
@@ -88,7 +88,7 @@ const Contact = () => {
                             <div>
                                 <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">GitHub</h4>
                                 <a href={user.social.github} target="_blank" rel="noopener noreferrer" className="text-[#9fb5e4] text-base sm:text-lg hover:text-[var(--neon-cyan)] transition-colors">
-                                    github.com/Yashika-2806
+                                    {user.social.github.replace("https://", "")}
                                 </a>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const Contact = () => {
                             <div>
                                 <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">LinkedIn</h4>
                                 <a href={user.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#9fb5e4] text-base sm:text-lg hover:text-[var(--neon-cyan)] transition-colors">
-                                    linkedin.com/in/yashika-sapra
+                                    {user.social.linkedin.replace("https://www.", "")}
                                 </a>
                             </div>
                         </div>

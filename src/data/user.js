@@ -154,8 +154,10 @@ export const user = {
     ],
     social: {
         github: "https://github.com/Yashika-2806",
-        linkedin: "https://www.linkedin.com/in/yashika-sapra-9a224a290/",
+        linkedin: "https://www.linkedin.com/in/yashika-sapra-71a684292/",
         leetcode: "https://leetcode.com/", // Add your specific link if available
-        email: "yashika.sapra@example.com"
+        email: "yashika2865@gmail.com",
+        phone: "6396951934",
+        address: "Krishna Nagar, Mathura, Uttar Pradesh"
     }
 };
