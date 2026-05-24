@@ -114,7 +114,7 @@ const Hero = () => {
 
                         <div className="absolute inset-12 rounded-full overflow-hidden border-4 border-[#2e446f] shadow-2xl group z-20 hover:border-[var(--neon-cyan)]/70 transition-colors duration-500">
                             <img
-                                src="/images/profile-picture.jpg"
+                                src="/images/professional image.jpeg"
                                 alt="Profile"
                                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale hover:grayscale-0"
                             />
