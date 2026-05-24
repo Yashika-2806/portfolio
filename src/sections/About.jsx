@@ -30,7 +30,7 @@ const About = () => {
                     >
                         <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-[var(--line)] relative group panel">
                             <img
-                                src="/images/profile-picture.jpg"
+                                src="/images/professional image.jpeg"
                                 alt="Profile"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
