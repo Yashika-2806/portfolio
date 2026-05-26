@@ -30,7 +30,65 @@ const Hero = () => {
                         className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full panel mx-auto lg:mx-0"
                     >
                         <span className="w-2.5 h-2.5 rounded-full bg-[var(--neon-cyan)] animate-pulse shadow-[0_0_12px_var(--neon-cyan)]"></span>
-                        <span className="text-[#bdd5ff] text-sm font-semibold tracking-[0.12em] uppercase">Open for AI/ML Roles (20+ LPA)</span>
+                        const Hero = ({ hero }) => {
+    return (
+        <section
+// ...existing code...
+                        <span className="text-[#bdd5ff] text-sm font-semibold tracking-[0.12em] uppercase">{hero.tagline}</span>
+                    </motion.div>
+
+                    <div className="relative">
+                        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-[1.05] tracking-tight neon-title">
+                            {hero.title[0]} <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-cyan)] via-[#e6fdff] to-[var(--neon-blue)]">
+                                {hero.title[1]}
+                            </span>
+                        </h1>
+                    </div>
+
+                    <div className="text-xl sm:text-3xl lg:text-4xl font-bold h-[42px] sm:h-[50px] flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
+                        <span className="text-[var(--neon-green)] font-black text-3xl sm:text-4xl">&gt;_</span>
+                        <span className="text-[#cfe0ff]">
+                            <Typewriter
+                                words={hero.typewriter}
+                                loop={0}
+                                cursor
+                                cursorStyle="|"
+                                typeSpeed={80}
+                                deleteSpeed={60}
+                                delaySpeed={1500}
+                            />
+                        </span>
+                    </div>
+
+                    <p className="text-lg md:text-2xl text-[#9ab0df] max-w-3xl mx-auto lg:mx-0 leading-relaxed font-light"
+                       dangerouslySetInnerHTML={{ __html: hero.description }}
+                    >
+                    </p>
+
+                    <div className="pt-5 border-t border-[var(--line)]">
+// ...existing code...
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 sm:pt-6 justify-center lg:justify-start">
+                        <motion.a
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(55,240,255,0.45)" }}
+                            whileTap={{ scale: 0.98 }}
+                            href="#contact"
+// ...existing code...
+                        <motion.a
+                            whileHover={{ scale: 1.05, borderColor: "rgba(55,240,255,0.8)" }}
+                            whileTap={{ scale: 0.98 }}
+                            href={hero.resumeUrl}
+                            target="_blank"
+                            className="px-7 sm:px-10 py-4 sm:py-5 bg-[#0a152d]/80 border border-[var(--line)] text-white font-bold text-lg sm:text-xl rounded-2xl backdrop-blur-md hover:bg-[#0f1c39] transition-all flex items-center justify-center gap-3"
+                        >
+// ...existing code...
+                    </div>
+
+                    <div className="flex gap-4 sm:gap-8 pt-5 sm:pt-6 justify-center lg:justify-start">
+                        <SocialButton href={user.social.github} icon={<FaGithub />} label="GitHub" delay={0} />
+                        <SocialButton href={user.social.linkedin} icon={<FaLinkedin />} label="LinkedIn" delay={0.1} />
+                        <SocialButton href={user.social.medium} icon={<FaMedium />} label="Medium" delay={0.2} />
+                    </div>
                     </motion.div>
 
                     <div className="relative">

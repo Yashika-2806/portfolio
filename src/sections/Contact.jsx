@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, motion } from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaLinkedin } from "react-icons/fa";
-import { user } from "../data/user";
+import SectionTitle from "../components/SectionTitle";
 
-const Contact = () => {
+const Contact = ({ contact, social }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -25,7 +24,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="section-shell relative">
+        <section id="contact" className="section-shell">
             <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--neon-blue)]/8 blur-[150px]" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--neon-cyan)]/8 blur-[150px]" />
 
@@ -36,77 +35,31 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="text-center mb-14 md:mb-20"
                 >
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-5 md:mb-6 neon-title">
-                        Get In <span className="neon-accent">Touch</span>
-                    </h2>
-                    <p className="text-base sm:text-lg md:text-xl text-[#92abdc] max-w-2xl mx-auto">
-                        <strong>Open for Full-Time AI/ML Roles (20+ LPA)|Consulting Partnerships | Technical Collaborations</strong>. Actively seeking positions building production-grade AI systems, multi-agent architectures, and scalable full-stack applications. I typically respond within 24 hours.
-                    </p>
+                    <SectionTitle title="Get In Touch" />
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-10 md:gap-16 max-w-6xl mx-auto">
-                    {/* Contact Info */}
+                <div className="mt-12 md:mt-20 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="space-y-8 md:space-y-12"
+                        className="space-y-8"
                     >
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 border-l-4 border-[var(--neon-cyan)] pl-4">Contact Information</h3>
-
-                        <div className="flex items-start gap-4 sm:gap-6 group">
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0a152d] flex items-center justify-center text-[var(--neon-cyan)] text-lg sm:text-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)] group-hover:shadow-[0_0_15px_rgba(55,240,255,0.2)] transition-all duration-300">
-                                <FaEnvelope />
-                            </div>
-                            <div>
-                                <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Email</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.email}</p>
-                            </div>
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-2">Get in Touch</h3>
+                            <p className="text-lg text-[#a4bbeb]">{contact.description}</p>
                         </div>
-
-                        <div className="flex items-start gap-4 sm:gap-6 group">
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0a152d] flex items-center justify-center text-[var(--neon-cyan)] text-lg sm:text-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)] group-hover:shadow-[0_0_15px_rgba(55,240,255,0.2)] transition-all duration-300">
-                                <FaPhoneAlt />
-                            </div>
-                            <div>
-                                <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Phone</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.phone}</p>
-                            </div>
+                        <div className="space-y-6">
+                            <InfoItem icon="fa-envelope" text={contact.email} href={`mailto:${contact.email}`} />
+                            <InfoItem icon="fa-phone" text={contact.phone} href={`tel:${contact.phone}`} />
+                            <InfoItem icon="fa-map-marker-alt" text={contact.address} />
                         </div>
-
-                        <div className="flex items-start gap-4 sm:gap-6 group">
-                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0a152d] flex items-center justify-center text-[var(--neon-cyan)] text-lg sm:text-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)] group-hover:shadow-[0_0_15px_rgba(55,240,255,0.2)] transition-all duration-300">
-                                <FaMapMarkerAlt />
-                            </div>
-                            <div>
-                                <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">Location</h4>
-                                <p className="text-[#9fb5e4] text-base sm:text-lg">{user.social.address}</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-4 sm:gap-6 group cursor-pointer">
-                            <a href={user.social.github} target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0a152d] flex items-center justify-center text-[var(--neon-cyan)] text-lg sm:text-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)] group-hover:shadow-[0_0_15px_rgba(55,240,255,0.2)] transition-all duration-300">
-                                <FaGithub />
-                            </a>
-                            <div>
-                                <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">GitHub</h4>
-                                <a href={user.social.github} target="_blank" rel="noopener noreferrer" className="text-[#9fb5e4] text-base sm:text-lg hover:text-[var(--neon-cyan)] transition-colors">
-                                    {user.social.github.replace("https://", "")}
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-4 sm:gap-6 group cursor-pointer">
-                            <a href={user.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0a152d] flex items-center justify-center text-[var(--neon-cyan)] text-lg sm:text-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)] group-hover:shadow-[0_0_15px_rgba(55,240,255,0.2)] transition-all duration-300">
-                                <FaLinkedin />
-                            </a>
-                            <div>
-                                <h4 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[var(--neon-cyan)] transition-colors">LinkedIn</h4>
-                                <a href={user.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#9fb5e4] text-base sm:text-lg hover:text-[var(--neon-cyan)] transition-colors">
-                                    {user.social.linkedin.replace("https://www.", "")}
-                                </a>
-                            </div>
+                        <div className="flex space-x-5 pt-4">
+                            <SocialLink href={social.linkedin} icon="fa-linkedin" />
+                            <SocialLink href={social.github} icon="fa-github" />
+                            <SocialLink href={social.twitter} icon="fa-twitter" />
+                            <SocialLink href={social.instagram} icon="fa-instagram" />
                         </div>
                     </motion.div>
 
@@ -115,8 +68,9 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
                         viewport={{ once: true }}
+                        className="panel p-6 md:p-8 rounded-2xl"
                     >
-                        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 panel p-6 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                             <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--neon-cyan)]/10 rounded-bl-full"></div>
 
                             <div className="space-y-3">
@@ -171,5 +125,29 @@ const Contact = () => {
         </section>
     );
 };
+
+const InfoItem = ({ icon, text, href }) => (
+    <div className="flex items-center gap-4 text-lg">
+        <div className="w-10 h-10 flex-shrink-0 rounded-full bg-[#10203a] border border-[#263c68] flex items-center justify-center">
+            <i className={`fa-solid ${icon} text-[var(--neon-cyan)]`}></i>
+        </div>
+        {href ? (
+            <a href={href} className="text-[#a4bbeb] hover:text-white transition-colors">{text}</a>
+        ) : (
+            <span className="text-[#a4bbeb]">{text}</span>
+        )}
+    </div>
+);
+
+const SocialLink = ({ href, icon }) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-12 h-12 rounded-full bg-[#10203a] border border-[#263c68] flex items-center justify-center text-xl text-[#a4bbeb] hover:text-[var(--neon-cyan)] hover:border-[var(--neon-cyan)]/50 transition-all"
+    >
+        <i className={`fab ${icon}`}></i>
+    </a>
+);
 
 export default Contact;

@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import { FaUser, FaVideo, FaTools, FaProjectDiagram, FaCertificate, FaEnvelope, FaHome, FaChalkboardTeacher, FaTrophy, FaBars, FaTimes } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ social }) => {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -76,7 +76,9 @@ const Navbar = () => {
                 </div>
 
                 <a
-                    href="#contact"
+                    href={social.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="
                         hidden md:flex items-center gap-2 px-5 py-2
                         bg-gradient-to-r from-[var(--neon-blue)] to-[var(--neon-cyan)] text-[#031326] font-bold rounded-xl
@@ -98,7 +100,7 @@ const Navbar = () => {
 
             {menuOpen && (
                 <motion.div
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute top-[66px] left-3 right-3 md:left-4 md:right-4 panel p-3 md:p-4 xl:hidden"
@@ -118,6 +120,14 @@ const Navbar = () => {
                                 <span>{link.name}</span>
                             </Link>
                         ))}
+                        <a
+                            href={social.whatsapp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[var(--neon-blue)] to-[var(--neon-cyan)] text-[#031326] font-bold rounded-xl"
+                        >
+                            Connect
+                        </a>
                     </div>
                 </motion.div>
             )}

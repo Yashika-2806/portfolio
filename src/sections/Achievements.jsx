@@ -1,91 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaTrophy } from "react-icons/fa";
+import SectionTitle from "../components/SectionTitle";
 
-const Achievements = () => {
-    const achievements = [
-        {
-            title: "🥇 1st Position - GLAU Shark Tank",
-            description: "Won against 50+ teams with innovative B2B automation product. Focused on problem clarity + execution roadmap. Prize: ₹50K + incubation mentorship.",
-            date: "2024",
-            images: [
-                "/images/Shark tank1.jpeg"
-            ]
-        },
-        {
-            title: "🥈 2nd Position - Technavya Digital Storytelling",
-            description: "Ranked 2/200+ participants. Built interactive web-based story platform using React + Three.js for 3D narrative. Creative + technical excellence.",
-            date: "2024",
-            images: [
-                "/images/Story telling1.jpeg",
-                "/images/Story telling2.jpeg"
-            ]
-        },
-        {
-            title: "⭐ AI Hackathon - Best Innovation",
-            description: "24-hour sprint. Built real-time anomaly detection system. Won vs 120+ participants in innovation category. From ideation to working demo in 24hrs.",
-            date: "2024",
-            images: [
-                "/images/AI summit1.jpeg",
-                "/images/AI summit2.jpeg"
-            ]
-        },
-        {
-            title: "🎖️ 1st Position - IBM ICE Day Technical Poster",
-            description: "Won among 80+ technical presentations. Research-based poster on distributed systems optimization. Defended complex ideas under scrutiny.",
-            date: "2024",
-            images: [
-                "/images/Poster1.jpg",
-                "/images/Poster2.jpeg",
-                "/images/Poster3.jpeg"
-            ]
-        },
-        {
-            title: "🏆 IBM ICE Day Technical Quiz - Top Score",
-            description: "94/100 - Highest score among 150+ competitors. Algorithms, system design, databases. Fundamentals matter.",
-            date: "2024",
-            images: [
-                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
-            ]
-        },
-        {
-            title: "🥈 2nd Position - Tech Expo Prototype Challenge",
-            description: "Built and demonstrated working IoT prototype. Won 2nd vs 60+ teams for technical depth + usability. Working demos > slideshows.",
-            date: "2023",
-            images: [
-                "/images/Tech expo1.jpeg",
-                "/images/Tech expo2.jpeg"
-            ]
-        },
-        {
-            title: "🌟 Recognized - Innovative Bharat Initiative",
-            description: "Selected for tech-driven national development program. Among 40 participants matched to high-impact problem statements. Scaling potential.",
-            date: "2024",
-            images: [
-                "/images/Innovative bharat1.jpg",
-                "/images/Innovative bharat2.jpeg"
-            ]
-        },
-        {
-            title: "👑 Cultural Leadership - 12th Standard",
-            description: "Selected as Cultural Head Girl (1/400 students). Organized 8 major school events. Led 25-person team. 60% school participation.",
-            date: "2022",
-            images: [
-                "/images/Cultural head1.jpeg"
-            ]
-        }
-    ];
-
+const Achievements = ({ achievements }) => {
     return (
-        <section id="achievements" className="section-shell relative">
-            <div className="container mx-auto px-4 sm:px-6">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center mb-14 md:mb-24 text-white tracking-tight neon-title">
-                    Honors & <span className="neon-accent">Achievements</span>
-                </h2>
-
-                <div className="flex flex-col gap-10 md:gap-16">
-                    {achievements.map((item, idx) => (
-                        <AchievementCard key={idx} item={item} index={idx} />
+        <section id="achievements" className="section-shell">
+            <SectionTitle>Awards & Achievements</SectionTitle>
+            <div className="mt-12 md:mt-20 max-w-4xl mx-auto">
+                <div className="relative border-l-2 border-[var(--line)] pl-8 space-y-12">
+                    {achievements.map((item, index) => (
+                        <AchievementItem key={index} item={item} />
                     ))}
                 </div>
             </div>
@@ -93,7 +18,7 @@ const Achievements = () => {
     );
 };
 
-const AchievementCard = ({ item, index }) => {
+const AchievementItem = ({ item }) => {
     const [currentImage, setCurrentImage] = useState(0);
 
     const nextImage = (e) => {
@@ -108,22 +33,18 @@ const AchievementCard = ({ item, index }) => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1, duration: 0.6 }}
-            viewport={{ once: true }}
-            className="w-full panel rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden group flex flex-col"
+            viewport={{ once: true, amount: 0.5 }}
+            className="relative"
         >
-            <div className="bg-gradient-to-r from-[#0d1a34] to-[#060c17] px-4 sm:px-8 py-4 sm:py-5 border-b border-[var(--line)] flex justify-between items-center relative overflow-hidden">
-                <div className="absolute inset-0 grid-overlay opacity-20"></div>
-                <div>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white relative z-10">{item.title}</h3>
-                    <p className="text-[var(--neon-cyan)] text-sm relative z-10 opacity-90 tracking-[0.12em] uppercase">{item.date}</p>
-                </div>
-                <div className="bg-[rgba(55,240,255,0.08)] p-3 rounded-xl border border-[rgba(55,240,255,0.2)] hidden md:block">
-                    <FaTrophy className="text-3xl text-[var(--neon-cyan)]" />
-                </div>
+            <div className="absolute -left-[42px] top-1 w-8 h-8 rounded-full bg-[#09162f] border-4 border-[var(--neon-cyan)] flex items-center justify-center shadow-[0_0_10px_rgba(55,240,255,0.8)]">
+                <i className={`fa-solid ${item.icon} text-[var(--neon-cyan)] text-sm`}></i>
             </div>
+            <p className="text-sm text-[#7ee9ff] font-semibold mb-1">{item.date}</p>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{item.title}</h3>
+            <p className="text-base md:text-lg text-[#9ab0df]">{item.description}</p>
 
             <div className="grid lg:grid-cols-[1.8fr_1fr] h-full min-h-[420px] sm:min-h-[600px]">
                 <div className="relative h-[340px] sm:h-[520px] lg:h-auto bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
