@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import userData from '../data/db.json';
 
@@ -6,10 +6,22 @@ const Admin = () => {
     const [data, setData] = useState(userData);
     const [loading, setLoading] = useState(false);
 
-    const handleInputChange = (e, index, section, field) => {
+    const handleInputChange = (e, section, index, field) => {
         const { value } = e.target;
         const newData = { ...data };
-        newData[section][index][field] = value;
+        if (section.startsWith('skills.')) {
+            const skillCat = section.split('.')[1];
+            newData.skills[skillCat][index][field] = value;
+        } else {
+            newData[section][index][field] = value;
+        }
+        setData(newData);
+    };
+    
+    const handleSimpleListChange = (e, index, section) => {
+        const { value } = e.target;
+        const newData = { ...data };
+        newData[section][index] = value;
         setData(newData);
     };
 
@@ -27,18 +39,22 @@ const Admin = () => {
 
     const addItem = (section) => {
         const newData = { ...data };
-        const newItem = section === 'projects' 
-            ? { title: "", description: "", github: "", demo: "" }
-            : section === 'certifications'
-            ? { title: "", issuer: "", date: "", learned: "", applied: "", image: "" }
-            : { name: "", color: "" };
-        
-        if (section.startsWith('skills.')) {
+        let newItem;
+
+        if (section === 'projects') newItem = { title: "", description: "", github: "", demo: "" };
+        else if (section === 'certifications') newItem = { title: "", issuer: "", date: "", image: "" };
+        else if (section === 'education') newItem = { degree: "", institution: "", year: "", details: "" };
+        else if (section === 'workshops') newItem = { title: "", date: "", description: "", image: "" };
+        else if (section === 'stats') newItem = { label: "", value: "" };
+        else if (section === 'typewriter') newItem = "";
+        else if (section.startsWith('skills.')) {
             const skillCat = section.split('.')[1];
-            newData.skills[skillCat].push(newItem);
-        } else {
-            newData[section].push(newItem);
+            newData.skills[skillCat].push({ name: "", icon: "", color: "" });
+            setData(newData);
+            return;
         }
+        
+        newData[section].push(newItem);
         setData(newData);
     };
 
@@ -62,65 +78,82 @@ const Admin = () => {
                 setLoading(false);
             })
             .catch(error => {
-                console.error("Error updating data:", error);
-                alert('Error updating data.');
+                console.error("Error updating data:", error.response ? error.response.data : error.message);
+                alert(`Error updating data: ${error.response ? error.response.data.message : error.message}`);
                 setLoading(false);
             });
     };
 
     return (
         <div className="p-5 sm:p-10 bg-gray-900 text-white min-h-screen">
-            <h1 className="text-3xl font-bold mb-10 text-center">Admin Portal</h1>
+            <h1 className="text-3xl font-bold mb-10 text-center">Full Portfolio CMS</h1>
             <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl mx-auto">
                 
-                {/* Profile Section */}
-                <div className="p-6 bg-gray-800 rounded-lg">
-                    <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Profile</h2>
-                    <div className="space-y-4">
-                        <div>
-                            <label className="block mb-1">Name</label>
-                            <input type="text" name="name" value={data.name || ''} onChange={handleFieldChange} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                        </div>
-                        <div>
-                            <label className="block mb-1">Bio</label>
-                            <input type="text" name="bio" value={data.bio || ''} onChange={handleFieldChange} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                        </div>
-                        <div>
-                            <label className="block mb-1">About</label>
-                            <textarea name="about" value={data.about || ''} onChange={handleFieldChange} rows="5" className="w-full p-2 rounded bg-gray-700 border border-gray-600"></textarea>
-                        </div>
-                    </div>
-                </div>
+                {/* General Info */}
+                <Section title="General Info">
+                    <InputField label="Name" name="name" value={data.name} onChange={handleFieldChange} />
+                    <InputField label="Bio" name="bio" value={data.bio} onChange={handleFieldChange} />
+                    <TextareaField label="About" name="about" value={data.about} onChange={handleFieldChange} />
+                </Section>
 
-                {/* Projects Section */}
-                <div className="p-6 bg-gray-800 rounded-lg">
-                    <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Projects</h2>
-                    {data.projects.map((project, index) => (
-                        <div key={index} className="space-y-3 p-4 border border-gray-700 rounded-md mb-4">
-                            <input type="text" placeholder="Title" value={project.title} onChange={(e) => handleInputChange(e, index, 'projects', 'title')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <textarea placeholder="Description" value={project.description} onChange={(e) => handleInputChange(e, index, 'projects', 'description')} className="w-full p-2 rounded bg-gray-700 border border-gray-600"></textarea>
-                            <input type="text" placeholder="GitHub URL" value={project.github} onChange={(e) => handleInputChange(e, index, 'projects', 'github')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <input type="text" placeholder="Demo URL" value={project.demo} onChange={(e) => handleInputChange(e, index, 'projects', 'demo')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <button type="button" onClick={() => removeItem('projects', index)} className="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm">Remove</button>
+                {/* Typewriter */}
+                <Section title="Hero Typewriter Text">
+                    {data.typewriter.map((text, index) => (
+                        <div key={index} className="flex items-center gap-2 mb-2">
+                            <input type="text" value={text} onChange={(e) => handleSimpleListChange(e, index, 'typewriter')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
+                            <button type="button" onClick={() => removeItem('typewriter', index)} className="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm">X</button>
                         </div>
+                    ))}
+                    <button type="button" onClick={() => addItem('typewriter')} className="mt-2 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Text</button>
+                </Section>
+
+                {/* Social Links */}
+                <Section title="Social Links">
+                    <InputField label="GitHub" name="social.github" value={data.social.github} onChange={handleFieldChange} />
+                    <InputField label="LinkedIn" name="social.linkedin" value={data.social.linkedin} onChange={handleFieldChange} />
+                    <InputField label="Email" name="social.email" value={data.social.email} onChange={handleFieldChange} />
+                    <InputField label="Phone" name="social.phone" value={data.social.phone} onChange={handleFieldChange} />
+                </Section>
+
+                {/* Projects */}
+                <Section title="Projects">
+                    {data.projects.map((item, index) => (
+                        <ItemCard key={index} onRemove={() => removeItem('projects', index)}>
+                            <InputField placeholder="Title" value={item.title} onChange={(e) => handleInputChange(e, 'projects', index, 'title')} />
+                            <TextareaField placeholder="Description" value={item.description} onChange={(e) => handleInputChange(e, 'projects', index, 'description')} />
+                            <InputField placeholder="GitHub URL" value={item.github} onChange={(e) => handleInputChange(e, 'projects', index, 'github')} />
+                            <InputField placeholder="Demo URL" value={item.demo} onChange={(e) => handleInputChange(e, 'projects', index, 'demo')} />
+                        </ItemCard>
                     ))}
                     <button type="button" onClick={() => addItem('projects')} className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Project</button>
-                </div>
+                </Section>
 
-                {/* Certifications Section */}
-                <div className="p-6 bg-gray-800 rounded-lg">
-                    <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Certifications</h2>
-                    {data.certifications.map((cert, index) => (
-                        <div key={index} className="space-y-3 p-4 border border-gray-700 rounded-md mb-4">
-                            <input type="text" placeholder="Title" value={cert.title} onChange={(e) => handleInputChange(e, index, 'certifications', 'title')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <input type="text" placeholder="Issuer" value={cert.issuer} onChange={(e) => handleInputChange(e, index, 'certifications', 'issuer')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <input type="text" placeholder="Date" value={cert.date} onChange={(e) => handleInputChange(e, index, 'certifications', 'date')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <input type="text" placeholder="Image Path" value={cert.image} onChange={(e) => handleInputChange(e, index, 'certifications', 'image')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
-                            <button type="button" onClick={() => removeItem('certifications', index)} className="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm">Remove</button>
-                        </div>
+                {/* Certifications */}
+                <Section title="Certifications">
+                    <p className="text-sm text-gray-400 mb-4">For images, place the file in `/public/images/` and enter the path here (e.g., `/images/my-cert.png`).</p>
+                    {data.certifications.map((item, index) => (
+                        <ItemCard key={index} onRemove={() => removeItem('certifications', index)}>
+                            <InputField placeholder="Title" value={item.title} onChange={(e) => handleInputChange(e, 'certifications', index, 'title')} />
+                            <InputField placeholder="Issuer" value={item.issuer} onChange={(e) => handleInputChange(e, 'certifications', index, 'issuer')} />
+                            <InputField placeholder="Date" value={item.date} onChange={(e) => handleInputChange(e, 'certifications', index, 'date')} />
+                            <InputField placeholder="Image Path" value={item.image} onChange={(e) => handleInputChange(e, 'certifications', index, 'image')} />
+                        </ItemCard>
                     ))}
                     <button type="button" onClick={() => addItem('certifications')} className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Certification</button>
-                </div>
+                </Section>
+
+                {/* Education */}
+                <Section title="Education">
+                    {data.education.map((item, index) => (
+                        <ItemCard key={index} onRemove={() => removeItem('education', index)}>
+                            <InputField placeholder="Degree" value={item.degree} onChange={(e) => handleInputChange(e, 'education', index, 'degree')} />
+                            <InputField placeholder="Institution" value={item.institution} onChange={(e) => handleInputChange(e, 'education', index, 'institution')} />
+                            <InputField placeholder="Year" value={item.year} onChange={(e) => handleInputChange(e, 'education', index, 'year')} />
+                            <InputField placeholder="Details" value={item.details} onChange={(e) => handleInputChange(e, 'education', index, 'details')} />
+                        </ItemCard>
+                    ))}
+                    <button type="button" onClick={() => addItem('education')} className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Education</button>
+                </Section>
 
                 <button type="submit" disabled={loading} className="w-full px-4 py-3 bg-blue-600 rounded hover:bg-blue-700 font-bold text-lg disabled:bg-gray-500">
                     {loading ? 'Saving...' : 'Save All Changes'}
@@ -129,5 +162,34 @@ const Admin = () => {
         </div>
     );
 };
+
+// Helper Components
+const Section = ({ title, children }) => (
+    <div className="p-6 bg-gray-800 rounded-lg">
+        <h2 className="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">{title}</h2>
+        <div className="space-y-4">{children}</div>
+    </div>
+);
+
+const ItemCard = ({ children, onRemove }) => (
+    <div className="relative space-y-3 p-4 border border-gray-700 rounded-md mb-4">
+        <button type="button" onClick={onRemove} className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 rounded-full hover:bg-red-700 text-xs font-bold">X</button>
+        {children}
+    </div>
+);
+
+const InputField = ({ label, ...props }) => (
+    <div>
+        {label && <label className="block mb-1 text-sm">{label}</label>}
+        <input type="text" {...props} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
+    </div>
+);
+
+const TextareaField = ({ label, ...props }) => (
+    <div>
+        {label && <label className="block mb-1 text-sm">{label}</label>}
+        <textarea {...props} rows="5" className="w-full p-2 rounded bg-gray-700 border border-gray-600"></textarea>
+    </div>
+);
 
 export default Admin;
