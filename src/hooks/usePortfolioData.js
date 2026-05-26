@@ -17,13 +17,26 @@ const transformData = (rawData) => {
       imageUrl: '/images/profile.jpg'
     },
     about: rawData.about || '',
-    social: rawData.social || {},
-    skills: rawData.skills || {},
+    social: rawData.social || {
+      github: '#',
+      linkedin: '#',
+      email: '#'
+    },
+    skills: rawData.skills || {
+      languages: [],
+      frontend: [],
+      backend: [],
+      ai_ml: [],
+      tools: []
+    },
     projects: rawData.projects || [],
     certifications: rawData.certifications || [],
     achievements: rawData.achievements || [],
     workshops: rawData.workshops || [],
-    contact: rawData.contact || {},
+    contact: rawData.contact || {
+      email: 'contact@example.com',
+      phone: '+1 (555) 000-0000'
+    },
     videoResume: rawData.videoResume || null
   };
 };
