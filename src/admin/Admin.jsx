@@ -72,7 +72,11 @@ const Admin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        axios.post('/api', data)
+        axios.post('/api', data, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => {
                 alert('Data updated successfully!');
                 setLoading(false);
