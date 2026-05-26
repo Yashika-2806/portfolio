@@ -6,6 +6,15 @@ const redis = new Redis({
 })
 
 module.exports = async (req, res) => {
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    return res.status(500).json({ message: 'Environment variables for Redis are not configured.' });
+  }
+
+  const redis = new Redis({
+    url: process.env.KV_REST_API_URL,
+    token: process.env.KV_REST_API_TOKEN,
+  });
+
   if (req.method === 'GET') {
     try {
       const data = await redis.get('user_data');
