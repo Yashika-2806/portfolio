@@ -12,7 +12,11 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert("Thanks for contacting me! I will get back to you soon.");
+        const { name, email, message } = formData;
+        const phone = user.social.phone.replace(/[^0-9]/g, "");
+        const text = `Hello, my name is ${name}.\nMy email is ${email}.\n\nMessage: ${message}`;
+        const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+        window.open(whatsappUrl, "_blank");
         setFormData({ name: "", email: "", message: "" });
     };
 
