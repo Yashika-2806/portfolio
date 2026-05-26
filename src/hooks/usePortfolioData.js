@@ -10,10 +10,12 @@ const usePortfolioData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api');
-        if (response.data && Object.keys(response.data).length > 0) {
+        // Deep check if the response data and its nested 'hero' object are valid
+        if (response.data && response.data.hero && Object.keys(response.data).length > 0) {
           setPortfolioData(response.data);
         } else {
-          // If API returns no data, use fallback
+          // If API returns incomplete data or a 404-like response, use fallback
+          console.log("API data is incomplete or missing, using fallback.");
           setPortfolioData(fallbackData);
         }
       } catch (error) {
