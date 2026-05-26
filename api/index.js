@@ -7,21 +7,28 @@ const redis = new Redis({
 
 export default async function handler(req, res) {
   try {
-    const data = await redis.get("portfolio");
+    const portfolioData = await redis.get("portfolio");
 
-    if (!data) {
+    console.log("Redis data:", portfolioData);
+
+    if (!portfolioData) {
       return res.status(404).json({
-        error: "No portfolio data found",
+        success: false,
+        message: "No portfolio data found",
       });
     }
 
-    return res.status(200).json(data);
+    return res.status(200).json({
+      success: true,
+      data: portfolioData,
+    });
 
   } catch (error) {
-    console.error("API Error:", error);
+    console.error("FULL API ERROR:", error);
 
     return res.status(500).json({
-      error: "Internal Server Error",
+      success: false,
+      error: error.message,
     });
   }
 }

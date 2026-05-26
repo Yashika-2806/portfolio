@@ -56,9 +56,12 @@ const usePortfolioData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api');
+        // API now returns { success: true, data: portfolioData }
+        const apiData = response.data.data || response.data;
+        
         // If API returns valid data with required structure, use it
-        if (response.data && response.data.hero && Object.keys(response.data).length > 0) {
-          setPortfolioData(response.data);
+        if (apiData && apiData.hero && Object.keys(apiData).length > 0) {
+          setPortfolioData(apiData);
         } else {
           // If API returns incomplete data, use transformed fallback
           console.log("API data is incomplete or missing, using fallback.");
