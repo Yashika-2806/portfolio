@@ -41,7 +41,7 @@ function MainLayout() {
     );
   }
 
-  const { name, hero, about, social, skills, projects, certifications, achievements, workshops, contact } = portfolioData;
+  const { name, hero, about, social, skills, projects, certifications, achievements, workshops, contact, videoResume } = portfolioData;
 
   return (
     <div className="min-h-screen overflow-x-hidden text-white selection:bg-[var(--neon-cyan)] selection:text-[#03111f]">

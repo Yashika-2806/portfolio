@@ -2,6 +2,32 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import fallbackData from '../data/db.json';
 
+// Transform raw db.json structure into the expected component structure
+const transformData = (rawData) => {
+  if (!rawData) return null;
+
+  return {
+    name: rawData.name || 'Portfolio',
+    hero: {
+      tagline: rawData.bio || 'Welcome',
+      title: ['Build', 'the Future'],
+      roles: rawData.typewriter || ['Developer'],
+      description: rawData.bio || 'Creating amazing things',
+      resumeUrl: '#',
+      imageUrl: '/images/profile.jpg'
+    },
+    about: rawData.about || '',
+    social: rawData.social || {},
+    skills: rawData.skills || {},
+    projects: rawData.projects || [],
+    certifications: rawData.certifications || [],
+    achievements: rawData.achievements || [],
+    workshops: rawData.workshops || [],
+    contact: rawData.contact || {},
+    videoResume: rawData.videoResume || null
+  };
+};
+
 const usePortfolioData = () => {
   const [portfolioData, setPortfolioData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,18 +36,18 @@ const usePortfolioData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api');
-        // Deep check if the response data and its nested 'hero' object are valid
+        // If API returns valid data with required structure, use it
         if (response.data && response.data.hero && Object.keys(response.data).length > 0) {
           setPortfolioData(response.data);
         } else {
-          // If API returns incomplete data or a 404-like response, use fallback
+          // If API returns incomplete data, use transformed fallback
           console.log("API data is incomplete or missing, using fallback.");
-          setPortfolioData(fallbackData);
+          setPortfolioData(transformData(fallbackData));
         }
       } catch (error) {
         console.error("Failed to fetch data from API, using fallback.", error);
-        // If API call fails, use fallback
-        setPortfolioData(fallbackData);
+        // If API call fails, use transformed fallback
+        setPortfolioData(transformData(fallbackData));
       } finally {
         setLoading(false);
       }
