@@ -1,30 +1,16 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaStar } from "react-icons/fa";
-import useGitHubProjects from "../hooks/useGitHubProjects";
+import { user } from "../data/user";
 
 const Projects = () => {
-    const { projects, loading, error } = useGitHubProjects("Yashika-2806");
-
-    if (loading) return (
-        <div className="py-24 text-white text-center flex flex-col items-center justify-center min-h-[50vh]">
-            <div className="w-16 h-16 border-4 border-[var(--neon-cyan)] border-t-transparent rounded-full animate-spin mb-6"></div>
-            <p className="text-xl text-[var(--neon-cyan)] animate-pulse tracking-[0.16em] uppercase">Fetching Projects...</p>
-        </div>
-    );
-
-    if (error) return (
-        <div className="py-20 text-red-400 text-center text-xl">
-            <p>Error loading projects: {error}</p>
-            <p className="text-sm mt-2 text-[#7f96c7]">Please try again later.</p>
-        </div>
-    );
+    const projects = user.projects;
 
     return (
         <section id="projects" className="section-shell relative">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="text-center mb-20">
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight neon-title">
-                        Projects <span className="neon-accent">.exe</span>
+                        Projects
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-[#92abdc] max-w-2xl mx-auto mt-5 md:mt-6">
                         A live stream of repositories, experiments, and deployable systems pulled from GitHub and framed as a futuristic mission board.
@@ -35,8 +21,8 @@ const Projects = () => {
                     <div className="text-center text-[#92abdc] text-xl">No projects found for this user.</div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-12">
-                        {projects.map((repo, idx) => (
-                            <ProjectCard key={repo.id} repo={repo} index={idx} />
+                        {projects.map((project, idx) => (
+                            <ProjectCard key={idx} repo={{...project, name: project.title, stargazers_count: 0}} index={idx} />
                         ))}
                     </div>
                 )}

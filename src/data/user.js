@@ -54,44 +54,34 @@ export const user = {
     // The main Project section primarily uses GitHub API data via useGitHubProjects.js
     projects: [
         {
-            title: "AI Career OS (Nirmaan)",
-            description: "Multi-agent AI system that autonomously manages job applications, parses recruiter emails, and categorizes opportunities by role fit. Saves 5+ hours/week per user. 50+ beta users, 87% accuracy.",
-            problem: "Job hunting is fragmented across spreadsheets and apps with zero automation",
-            tech: ["Python", "LLMs", "Multi-Agent AI", "Node.js", "React", "MongoDB"],
-            impact: "50+ beta users | 87% accuracy | 5 hrs/week saved",
-            github: "https://github.com/Yashika-2806",
+            title: "Nirmaan",
+            description: "Multi-agent AI system that autonomously manages job applications, parses recruiter emails, and categorizes opportunities by role fit.",
+            github: "#",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop"
         },
         {
-            title: "Smart Home Automation System",
-            description: "Real-time IoT network with intelligent automation. Arduino sensors, Python processing, React dashboard. 1000+ events/day, 99.2% uptime, <50ms latency. 30% energy reduction.",
-            problem: "Home automation is either rigid (presets) or complex (requires coding)",
-            tech: ["Arduino", "C++", "Python", "React", "MQTT", "Real-time DB"],
-            impact: "1000+ events/day | 99.2% uptime | 30% energy reduction",
-            github: "https://github.com/Yashika-2806",
+            title: "Student Welfare Platform",
+            description: "A platform to connect students with resources and support for their well-being.",
+            github: "#",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1558002038-1091a166111c?q=80&w=2000&auto=format&fit=crop"
         },
         {
-            title: "Smart Urban Data Analytics Platform",
-            description: "City-scale intelligence system. Ingests 100K+ daily metrics, runs ML models to identify infrastructure patterns, surfaces optimization recommendations with 87% accuracy.",
-            problem: "Urban planners lack real-time data insights for infrastructure optimization",
-            tech: ["Python", "Scikit-Learn", "Node.js", "React", "PostgreSQL", "Docker"],
-            impact: "15+ optimizations identified | 87% accuracy | Live with municipality",
-            github: "https://github.com/Yashika-2806",
+            title: "Manthan",
+            description: "A project for brainstorming and idea generation.",
+            github: "#",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000&auto=format&fit=crop"
         },
         {
-            title: "Full-Stack E-Commerce Marketplace",
-            description: "Scalable multi-vendor marketplace with real-time inventory, Elasticsearch search, and Stripe payments. Handled 10K+ test orders, 500+ sellers, 50K+ SKUs in beta.",
-            problem: "Standard e-commerce lacks seller ecosystem and real-time inventory management",
-            tech: ["React", "Node.js", "MongoDB", "Redis", "Elasticsearch", "Stripe"],
-            impact: "10K+ orders | 500+ sellers | <200ms response time",
-            github: "https://github.com/Yashika-2806",
+            title: "Promptathon",
+            description: "A hackathon-style event focused on prompt engineering.",
+            github: "#",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2000&auto=format&fit=crop"
+        },
+        {
+            title: "Movie and Song Recommendation",
+            description: "A recommendation system for movies and songs.",
+            github: "#",
+            demo: "#",
         }
     ],
     education: [
