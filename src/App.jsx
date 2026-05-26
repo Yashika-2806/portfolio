@@ -13,6 +13,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { FaHeart } from "react-icons/fa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./admin/Admin";
+import { user } from "./data/user";
 
 function App() {
   const { scrollYProgress } = useScroll();
