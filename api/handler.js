@@ -2,6 +2,10 @@ import { Redis } from '@upstash/redis';
 
 // Use "export default" for ES Modules
 export default async function handler(req, res) {
+  // Log environment variables for debugging
+  console.log('KV_REST_API_URL:', process.env.KV_REST_API_URL ? 'Set' : 'Not Set');
+  console.log('KV_REST_API_TOKEN:', process.env.KV_REST_API_TOKEN ? 'Set' : 'Not Set');
+
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return res.status(500).json({ message: 'FATAL: Environment variables for Redis are not configured.' });
   }
