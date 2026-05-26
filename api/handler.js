@@ -29,7 +29,15 @@ export default async function handler(req, res) {
       console.log(dataString ? "Data found in Redis." : "No data found in Redis for key 'user_data'.");
 
       if (dataString) {
-        res.status(200).json(JSON.parse(dataString));
+        try {
+          // Attempt to parse the data. If it fails, it's corrupt.
+          const jsonData = JSON.parse(dataString);
+          res.status(200).json(jsonData);
+        } catch (parseError) {
+          console.error('JSON Parse Error: Data in Redis is corrupt.', parseError);
+          // Treat corrupt data as if no data was found.
+          res.status(404).json({ message: 'Corrupt data found in Redis.' });
+        }
       } else {
         res.status(404).json({ message: 'No data found in Redis.' });
       }
