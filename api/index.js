@@ -7,7 +7,8 @@ const redis = new Redis({
 
 import { Redis } from '@upstash/redis';
 
-module.exports = async (req, res) => {
+// Use "export default" for ES Modules
+export default async function handler(req, res) {
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return res.status(500).json({ message: 'FATAL: Environment variables for Redis are not configured.' });
   }
@@ -43,4 +44,4 @@ module.exports = async (req, res) => {
     res.setHeader('Allow', ['GET', 'POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-};
+}
