@@ -12,6 +12,7 @@ const Skills = ({ skills }) => {
                         category={key}
                         skills={categorySkills || []}
                         icon={null}
+                        index={index}
                     />
                 )) : null}
             </div>
@@ -19,7 +20,7 @@ const Skills = ({ skills }) => {
     );
 };
 
-const SkillCategory = ({ category, skills, icon }) => {
+const SkillCategory = ({ category, skills, icon, index }) => {
     // Map skills to their use cases
     const skillUseCases = {
         // Languages
