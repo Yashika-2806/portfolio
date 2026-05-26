@@ -6,7 +6,7 @@ const Skills = ({ skills }) => {
         <section id="skills" className="section-shell">
             <SectionTitle>Skills & Expertise</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {skills && Object.keys(skills).length > 0 ? Object.entries(skills).map(([key, categorySkills], index) => (
+                {skills && typeof skills === 'object' && Object.keys(skills).length > 0 ? Object.entries(skills).map(([key, categorySkills], index) => (
                     <SkillCategory
                         key={index}
                         category={key}
