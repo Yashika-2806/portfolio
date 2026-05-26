@@ -1,0 +1,242 @@
+{
+    "name": "Yashika Sapra",
+    "bio": "AI Systems Engineer | Building Production-Grade AI & Full-Stack Systems",
+    "typewriter": [
+        "AI Systems Engineer",
+        "Full Stack Builder",
+        "ML Infrastructure Specialist",
+        "Systems Architect"
+    ],
+    "about": "I build intelligent systems from neurons to APIs.\\n\\n**Three things:**\\n1. I think like a systems architect, not a learner → I design for production: scalability, monitoring, failure handling.\\n\\n2. I ship the full stack → ML models + APIs + frontends + DevOps. I don't stop at notebooks.\\n\\n3. I solve real problems → Multi-agent AI for job automation. IoT networks handling 1000+ events/sec. Data systems processing millions.\\n\\n**Currently:** B.Tech CS (AI/ML/IoT specialization, 2023–2027) at GLA University\\n\\n**Previously:** 5+ hackathon wins. 15+ production projects. Multiple technical competitions. Shipped systems used by 50+ beta users.\\n\\nI obsess over impact metrics: latency, throughput, reliability. Every system I build has real numbers attached.",
+    "stats": [
+        {
+            "label": "Projects Built",
+            "value": "15+"
+        },
+        {
+            "label": "Hackathons Won",
+            "value": "5+"
+        },
+        {
+            "label": "Certifications",
+            "value": "10+"
+        },
+        {
+            "label": "Years Coding",
+            "value": "3+"
+        }
+    ],
+    "skills": {
+        "languages": [
+            {
+                "name": "Java",
+                "color": "#007396"
+            },
+            {
+                "name": "Python",
+                "color": "#3776AB"
+            },
+            {
+                "name": "JavaScript",
+                "color": "#F7DF1E"
+            },
+            {
+                "name": "TypeScript",
+                "color": "#3178C6"
+            },
+            {
+                "name": "C++",
+                "color": "#00599C"
+            },
+            {
+                "name": "SQL",
+                "color": "#4479A1"
+            }
+        ],
+        "frontend": [
+            {
+                "name": "React",
+                "color": "#61DAFB"
+            },
+            {
+                "name": "Next.js",
+                "color": "#ffffff"
+            },
+            {
+                "name": "Tailwind CSS",
+                "color": "#38B2AC"
+            },
+            {
+                "name": "HTML5",
+                "color": "#E34F26"
+            },
+            {
+                "name": "CSS3",
+                "color": "#1572B6"
+            }
+        ],
+        "backend": [
+            {
+                "name": "Node.js",
+                "color": "#339933"
+            },
+            {
+                "name": "Express",
+                "color": "#ffffff"
+            },
+            {
+                "name": "MongoDB",
+                "color": "#47A248"
+            },
+            {
+                "name": "REST APIs",
+                "color": "#FF6C37"
+            },
+            {
+                "name": "Firebase",
+                "color": "#FFCA28"
+            }
+        ],
+        "ai_ml": [
+            {
+                "name": "TensorFlow",
+                "color": "#FF6F00"
+            },
+            {
+                "name": "PyTorch",
+                "color": "#EE4C2C"
+            },
+            {
+                "name": "OpenCV",
+                "color": "#5C3EE8"
+            },
+            {
+                "name": "Scikit-Learn",
+                "color": "#F7931E"
+            },
+            {
+                "name": "Pandas",
+                "color": "#150458"
+            }
+        ],
+        "tools": [
+            {
+                "name": "Git",
+                "color": "#F05032"
+            },
+            {
+                "name": "Docker",
+                "color": "#2496ED"
+            },
+            {
+                "name": "Kubernetes",
+                "color": "#326CE5"
+            },
+            {
+                "name": "Postman",
+                "color": "#FF6C37"
+            },
+            {
+                "name": "Arduino",
+                "color": "#00979D"
+            }
+        ]
+    },
+    "projects": [
+        {
+            "title": "Nirmaan",
+            "description": "Multi-agent AI system that autonomously manages job applications, parses recruiter emails, and categorizes opportunities by role fit.",
+            "github": "#",
+            "demo": "#"
+        },
+        {
+            "title": "Student Welfare Platform",
+            "description": "A platform to connect students with resources and support for their well-being.",
+            "github": "#",
+            "demo": "#"
+        },
+        {
+            "title": "Manthan",
+            "description": "A project for brainstorming and idea generation.",
+            "github": "#",
+            "demo": "#"
+        },
+        {
+            "title": "Promptathon",
+            "description": "A hackathon-style event focused on prompt engineering.",
+            "github": "#",
+            "demo": "#"
+        },
+        {
+            "title": "Movie and Song Recommendation",
+            "description": "A recommendation system for movies and songs.",
+            "github": "#",
+            "demo": "#"
+        }
+    ],
+    "education": [
+        {
+            "degree": "B.Tech in Computer Science Engineering",
+            "institution": "GLA University",
+            "year": "2023 - 2027",
+            "details": "Specialization: Artificial Intelligence, Machine Learning & IoT"
+        }
+    ],
+    "certifications": [
+        {
+            "title": "Fundamentals of Building AI Agents",
+            "issuer": "Coursera",
+            "date": "Jan 2025",
+            "learned": "Multi-agent architecture, tool integration patterns, reliability",
+            "applied": "Built Nirmaan with 3 coordinated agents. Implemented error handling + retry logic.",
+            "image": "/images/fundamentals of building ai agents courseera.pdf"
+        },
+        {
+            "title": "Introduction to Large Language Models",
+            "issuer": "Coursera",
+            "date": "Nov 2024",
+            "learned": "LLM architecture, prompt engineering, token economics",
+            "applied": "LLM integration in Nirmaan for email parsing + classification. Optimized cost-per-token.",
+            "image": "/images/intoduction to llms courseera.pdf"
+        },
+        {
+            "title": "Intro to Embedded Systems",
+            "issuer": "Coursera",
+            "date": "Sep 2024",
+            "learned": "Microcontroller programming, sensor integration, real-time constraints",
+            "applied": "Architected sensor network for home automation. Solved 50ms latency challenge.",
+            "image": "/images/intro to embeddeed.pdf"
+        },
+        {
+            "title": "Generative AI",
+            "issuer": "Databricks",
+            "date": "Aug 2024",
+            "learned": "Generative models, fine-tuning strategies, deployment optimization",
+            "applied": "Fine-tuned inference models for urban analytics classification tasks.",
+            "image": "/images/generative ai databricks.pdf"
+        },
+        {
+            "title": "Oracle Database Professional",
+            "issuer": "Oracle",
+            "date": "Jun 2024",.
+            "learned": "Advanced SQL, indexing strategies, query optimization",
+            "applied": "Designed PostgreSQL schema for analytics platform. Achieved sub-second queries.",
+            "image": "/images/ecertificate oracle.pdf"
+        },
+        {
+            "title": "Agentic AI Workshop",
+            "issuer": "Workshop",
+            "date": "Jan 2025",
+            "learned": "Autonomous system design, reliability patterns at scale",
+            "applied": "Direct application to Nirmaan multi-agent orchestration.",
+            "image": "/images/agentic ai workshop certificate.png"
+        }
+    ],
+    "social": {
+        "github": "https://github.com/Yashika-2806",
+        "linkedin": "https://www.linkedin.com/in/yashika-sapra-71a684292/",
+        "leetcode": "https://leetcode.com/",
+        "email": "yashika2865@gmail.com",
+        "phone": "6396951934"
+    }
+}
