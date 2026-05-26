@@ -20,15 +20,20 @@ const Achievements = ({ achievements }) => {
 
 const AchievementItem = ({ item }) => {
     const [currentImage, setCurrentImage] = useState(0);
+    const images = (item && item.images) || [];
 
     const nextImage = (e) => {
         e.stopPropagation();
-        setCurrentImage((prev) => (prev + 1) % item.images.length);
+        if (images.length > 0) {
+            setCurrentImage((prev) => (prev + 1) % images.length);
+        }
     };
 
     const prevImage = (e) => {
         e.stopPropagation();
-        setCurrentImage((prev) => (prev - 1 + item.images.length) % item.images.length);
+        if (images.length > 0) {
+            setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+        }
     };
 
     return (
@@ -51,7 +56,7 @@ const AchievementItem = ({ item }) => {
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={currentImage}
-                            src={item.images[currentImage]}
+                            src={images[currentImage] || ''}
                             alt={`${item.title} - ${currentImage + 1}`}
                             initial={{ opacity: 0, scale: item.rotate ? 1.5 : 1.1 }}
                             animate={{ opacity: 1, scale: item.rotate ? 1.4 : 1 }}
@@ -63,7 +68,7 @@ const AchievementItem = ({ item }) => {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
 
-                    {item.images.length > 1 && (
+                    {images && images.length > 1 && (
                         <>
                             <button
                                 onClick={prevImage}
@@ -79,7 +84,7 @@ const AchievementItem = ({ item }) => {
                             </button>
 
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                                {item && item.images && item.images.length > 0 ? item.images.map((_, idx) => (
+                                {images && Array.isArray(images) && images.length > 0 ? images.map((_, idx) => (
                                     <button
                                         key={idx}
                                         onClick={(e) => { e.stopPropagation(); setCurrentImage(idx); }}
