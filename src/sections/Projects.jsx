@@ -59,11 +59,11 @@ const ProjectCard = ({ project, onView }) => {
                 <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                 <p className="text-[#9ab0df] text-sm mb-4 line-clamp-2">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, index) => (
+                    {project && project.tags && project.tags.length > 0 ? project.tags.map((tag, index) => (
                         <span key={index} className="bg-[#10203a] text-[#7ee9ff] text-xs font-semibold px-3 py-1 rounded-full">
                             {tag}
                         </span>
-                    ))}
+                    )) : null}
                 </div>
                 <button
                     onClick={onView}

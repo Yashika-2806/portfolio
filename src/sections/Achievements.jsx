@@ -79,13 +79,13 @@ const AchievementItem = ({ item }) => {
                             </button>
 
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                                {item.images.map((_, idx) => (
+                                {item && item.images && item.images.length > 0 ? item.images.map((_, idx) => (
                                     <button
                                         key={idx}
                                         onClick={(e) => { e.stopPropagation(); setCurrentImage(idx); }}
                                         className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === currentImage ? "bg-[var(--neon-cyan)] w-8" : "bg-white/30 hover:bg-white"}`}
                                     />
-                                ))}
+                                )) : null}
                             </div>
                         </>
                     )}

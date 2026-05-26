@@ -41,11 +41,11 @@ const Modal = ({ isOpen, onClose, project }) => {
                                 <div>
                                     <h3 className="text-3xl font-bold text-white mb-2">{project.title}</h3>
                                     <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.tech.map((t, i) => (
+                                        {project && project.tech && project.tech.length > 0 ? project.tech.map((t, i) => (
                                             <span key={i} className="px-3 py-1 bg-[rgba(55,240,255,0.08)] text-[var(--neon-cyan)] rounded-full text-xs font-medium border border-[rgba(55,240,255,0.2)]">
                                                 {t}
                                             </span>
-                                        ))}
+                                        )) : null}
                                     </div>
                                 </div>
 

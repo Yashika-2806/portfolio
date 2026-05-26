@@ -58,9 +58,9 @@ const About = ({ about }) => {
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 sm:gap-8">
-                            {about.stats.map((stat, index) => (
+                            {about && about.stats && about.stats.length > 0 ? about.stats.map((stat, index) => (
                                 <StatCard key={index} count={stat.value} label={stat.label} />
-                            ))}
+                            )) : null}
                         </div>
 
                         <div className="space-y-6" id="education">
@@ -68,14 +68,14 @@ const About = ({ about }) => {
                                 <FaGraduationCap className="text-[var(--neon-cyan)]" /> Education
                             </h3>
                             <div className="space-y-7 md:space-y-8 border-l-2 border-[var(--line)] pl-6 md:pl-8 relative">
-                                {about.education.map((edu, index) => (
+                                {about && about.education && about.education.length > 0 ? about.education.map((edu, index) => (
                                     <div key={index} className="relative group">
                                         <span className="absolute -left-[37px] top-1.5 w-5 h-5 rounded-full bg-[#09162f] border-4 border-[var(--neon-cyan)] group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(55,240,255,0.8)]" />
                                         <h4 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[var(--neon-cyan)] transition-colors">{edu.degree}</h4>
                                         <p className="text-[#7ee9ff] text-base md:text-xl font-medium mt-1">{edu.institution} | {edu.year}</p>
                                         <p className="text-[#9ab0df] text-base md:text-xl mt-2">{edu.details}</p>
                                     </div>
-                                ))}
+                                )) : null}
                             </div>
                         </div>
                     </motion.div>
