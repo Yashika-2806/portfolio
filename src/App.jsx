@@ -9,6 +9,7 @@ import Certifications from "./sections/Certifications";
 import Achievements from "./sections/Achievements";
 import Workshops from "./sections/Workshops";
 import Contact from "./sections/Contact";
+import Footer from "./components/Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { FaHeart } from "react-icons/fa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
