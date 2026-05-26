@@ -218,7 +218,7 @@
         {
             "title": "Oracle Database Professional",
             "issuer": "Oracle",
-            "date": "Jun 2024",.
+            "date": "Jun 2024",
             "learned": "Advanced SQL, indexing strategies, query optimization",
             "applied": "Designed PostgreSQL schema for analytics platform. Achieved sub-second queries.",
             "image": "/images/ecertificate oracle.pdf"

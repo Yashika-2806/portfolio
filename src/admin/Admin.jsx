@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import userData from '../data/db.json';
 
 const Admin = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('/api')
-            .then(response => {
-                setData(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-                setLoading(false);
-            });
+        // Use imported data for initial state
+        setData(userData);
+        setLoading(false);
     }, []);
 
     const handleChange = (e) => {
