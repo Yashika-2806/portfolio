@@ -7,9 +7,9 @@ const Workshops = ({ workshops }) => {
         <section id="workshops" className="section-shell">
             <SectionTitle>Workshops & Seminars</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {workshops.map((item, index) => (
+                {workshops && workshops.length > 0 ? workshops.map((item, index) => (
                     <WorkshopCard key={index} item={item} />
-                ))}
+                )) : null}
             </div>
         </section>
     );

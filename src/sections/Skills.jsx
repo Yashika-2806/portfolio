@@ -6,14 +6,14 @@ const Skills = ({ skills }) => {
         <section id="skills" className="section-shell">
             <SectionTitle>Skills & Expertise</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {skills.map((category, index) => (
+                {skills && Object.keys(skills).length > 0 ? Object.entries(skills).map(([key, categorySkills], index) => (
                     <SkillCategory
                         key={index}
-                        category={category.category}
-                        skills={category.skills}
-                        icon={category.icon}
+                        category={key}
+                        skills={categorySkills || []}
+                        icon={null}
                     />
-                ))}
+                )) : null}
             </div>
         </section>
     );
@@ -69,14 +69,14 @@ const SkillCategory = ({ category, skills, icon }) => {
                 <h3 className="text-2xl font-bold text-white">{category}</h3>
             </div>
             <div className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
+                {skills && Array.isArray(skills) && skills.length > 0 ? skills.map((skill, index) => (
                     <span
                         key={index}
                         className="bg-[#10203a] text-[#96b2e9] text-sm font-semibold px-4 py-2 rounded-full border border-[#263c68] hover:border-[var(--neon-cyan)]/50 hover:text-white transition-all cursor-default"
                     >
-                        {skill}
+                        {skill.name || skill}
                     </span>
-                ))}
+                )) : null}
             </div>
         </motion.div>
     );

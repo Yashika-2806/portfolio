@@ -9,9 +9,9 @@ const Achievements = ({ achievements }) => {
             <SectionTitle>Awards & Achievements</SectionTitle>
             <div className="mt-12 md:mt-20 max-w-4xl mx-auto">
                 <div className="relative border-l-2 border-[var(--line)] pl-8 space-y-12">
-                    {achievements.map((item, index) => (
+                    {achievements && achievements.length > 0 ? achievements.map((item, index) => (
                         <AchievementItem key={index} item={item} />
-                    ))}
+                    )) : null}
                 </div>
             </div>
         </section>

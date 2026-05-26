@@ -116,9 +116,9 @@ const Certifications = ({ certifications }) => {
         <section id="certifications" className="section-shell">
             <SectionTitle>Certifications & Credentials</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {certifications.map((cert, index) => (
+                {certifications && certifications.length > 0 ? certifications.map((cert, index) => (
                     <CertificationCard key={index} cert={cert} />
-                ))}
+                )) : null}
             </div>
         </section>
     );

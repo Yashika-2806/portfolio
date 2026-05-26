@@ -11,13 +11,13 @@ const Projects = ({ projects }) => {
         <section id="projects" className="section-shell">
             <SectionTitle>Featured Projects</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, index) => (
+                {projects && projects.length > 0 ? projects.map((project, index) => (
                     <ProjectCard
                         key={index}
                         project={project}
                         onView={() => setSelectedProject(project)}
                     />
-                ))}
+                )) : null}
             </div>
             {selectedProject && (
                 <Modal
