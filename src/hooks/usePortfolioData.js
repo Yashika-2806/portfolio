@@ -16,7 +16,14 @@ const transformData = (rawData) => {
       resumeUrl: '#',
       imageUrl: '/images/profile.jpg'
     },
-    about: rawData.about || '',
+    about: {
+      imageUrl: '/images/profile.jpg',
+      quote: 'I build intelligent systems from neurons to APIs.',
+      title: 'About Me',
+      description: rawData.about || 'Creating amazing things',
+      stats: rawData.stats || [],
+      education: rawData.education || []
+    },
     social: rawData.social || {
       github: '#',
       linkedin: '#',

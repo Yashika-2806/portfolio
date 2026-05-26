@@ -2,6 +2,15 @@ import { motion } from "framer-motion";
 import { FaGraduationCap } from "react-icons/fa";
 
 const About = ({ about }) => {
+    // Provide safe defaults for about object
+    const safeAbout = about || {};
+    const imageUrl = safeAbout.imageUrl || '/images/profile.jpg';
+    const quote = safeAbout.quote || '';
+    const title = safeAbout.title || 'About Me';
+    const description = safeAbout.description || '';
+    const stats = safeAbout.stats || [];
+    const education = safeAbout.education || [];
+
     return (
         <section id="about" className="section-shell text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--neon-blue)]/15 blur-[120px]" />
@@ -29,15 +38,17 @@ const About = ({ about }) => {
                     >
                         <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-[var(--line)] relative group panel">
                             <img
-                                src={about.imageUrl}
+                                src={imageUrl}
                                 alt="Profile"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
 
-                            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-5 sm:p-8 bg-[#081427]/90 backdrop-blur-md rounded-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)]/60 transition-colors">
-                                <p className="font-bold text-base sm:text-xl text-white italic">"{about.quote}"</p>
-                            </div>
+                            {quote && (
+                                <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-5 sm:p-8 bg-[#081427]/90 backdrop-blur-md rounded-2xl border border-[var(--line)] group-hover:border-[var(--neon-cyan)]/60 transition-colors">
+                                    <p className="font-bold text-base sm:text-xl text-white italic">"{quote}"</p>
+                                </div>
+                            )}
                         </div>
                     </motion.div>
 
@@ -49,26 +60,30 @@ const About = ({ about }) => {
                         className="space-y-8 md:space-y-10"
                     >
                         <div className="space-y-6">
-                            <h3 className="text-2xl md:text-4xl font-bold text-[var(--neon-cyan)]">{about.title}</h3>
+                            <h3 className="text-2xl md:text-4xl font-bold text-[var(--neon-cyan)]">{title}</h3>
                             
-                            <div className="space-y-6 text-lg md:text-xl text-[#a4bbeb] leading-relaxed"
-                                 dangerouslySetInnerHTML={{ __html: about.description }}
-                            >
-                            </div>
+                            {description && (
+                                <div className="space-y-6 text-lg md:text-xl text-[#a4bbeb] leading-relaxed"
+                                     dangerouslySetInnerHTML={{ __html: description }}
+                                >
+                                </div>
+                            )}
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 sm:gap-8">
-                            {about && about.stats && about.stats.length > 0 ? about.stats.map((stat, index) => (
-                                <StatCard key={index} count={stat.value} label={stat.label} />
-                            )) : null}
-                        </div>
+                        {stats && Array.isArray(stats) && stats.length > 0 && (
+                            <div className="grid grid-cols-2 gap-4 sm:gap-8">
+                                {stats.map((stat, index) => (
+                                    <StatCard key={index} count={stat.value} label={stat.label} />
+                                ))}
+                            </div>
+                        )}
 
                         <div className="space-y-6" id="education">
                             <h3 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
                                 <FaGraduationCap className="text-[var(--neon-cyan)]" /> Education
                             </h3>
                             <div className="space-y-7 md:space-y-8 border-l-2 border-[var(--line)] pl-6 md:pl-8 relative">
-                                {about && about.education && about.education.length > 0 ? about.education.map((edu, index) => (
+                                {education && Array.isArray(education) && education.length > 0 ? education.map((edu, index) => (
                                     <div key={index} className="relative group">
                                         <span className="absolute -left-[37px] top-1.5 w-5 h-5 rounded-full bg-[#09162f] border-4 border-[var(--neon-cyan)] group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(55,240,255,0.8)]" />
                                         <h4 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[var(--neon-cyan)] transition-colors">{edu.degree}</h4>
