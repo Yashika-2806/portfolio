@@ -10,7 +10,7 @@ const DEFAULT_PORTFOLIO_DATA = {
     title: ['Build', 'the Future'],
     roles: ['Developer'],
     description: 'Creating amazing things',
-    resumeUrl: '#',
+    resumeUrl: '/resume/Yashika%20Sapra.pdf',
     imageUrl: '/images/professional image.jpeg'
   },
   about: {
@@ -48,6 +48,41 @@ const DEFAULT_PORTFOLIO_DATA = {
   videoResume: null
 };
 
+const mergeByTitle = (primaryItems, fallbackItems) => {
+  const primary = Array.isArray(primaryItems) ? primaryItems : [];
+  const fallback = Array.isArray(fallbackItems) ? fallbackItems : [];
+  const fallbackByTitle = new Map(
+    fallback.map((item) => [String(item?.title || item?.name || '').toLowerCase(), item])
+  );
+  const seen = new Set();
+
+  const merged = primary.map((item) => {
+    const key = String(item?.title || item?.name || '').toLowerCase();
+    const fallbackItem = fallbackByTitle.get(key);
+    const images = [
+      ...(Array.isArray(item?.images) ? item.images : []),
+      ...(Array.isArray(fallbackItem?.images) ? fallbackItem.images : []),
+    ].filter((image, index, allImages) => image && allImages.indexOf(image) === index);
+
+    seen.add(key);
+    return {
+      ...(fallbackItem || {}),
+      ...item,
+      imageUrl: item?.imageUrl || item?.image || fallbackItem?.imageUrl,
+      image: item?.image || fallbackItem?.image,
+      images: images.length > 0 ? images : undefined,
+      tags: Array.isArray(item?.tags) && item.tags.length > 0 ? item.tags : fallbackItem?.tags,
+    };
+  });
+
+  fallback.forEach((item) => {
+    const key = String(item?.title || item?.name || '').toLowerCase();
+    if (!seen.has(key)) merged.push(item);
+  });
+
+  return merged;
+};
+
 // Transform raw db.json structure into the expected component structure with safe defaults
 const transformData = (rawData) => {
   if (!rawData) return DEFAULT_PORTFOLIO_DATA;
@@ -59,7 +94,7 @@ const transformData = (rawData) => {
       title: Array.isArray(rawData.title) ? rawData.title : ['Hi, I am', rawData.name || 'Yashika Sapra'],
       roles: Array.isArray(rawData.typewriter) ? rawData.typewriter : ['Developer'],
       description: rawData.bio || 'Creating amazing things',
-      resumeUrl: '#',
+      resumeUrl: rawData.hero?.resumeUrl || rawData.resumeUrl || '/resume/Yashika%20Sapra.pdf',
       imageUrl: '/images/professional image.jpeg'
     },
     about: {
@@ -122,7 +157,7 @@ const usePortfolioData = () => {
               ? apiData.typewriter 
               : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Developer']),
             description: apiData.bio || fallbackData.bio || 'Creating amazing things',
-            resumeUrl: apiData.hero?.resumeUrl || '#',
+            resumeUrl: apiData.hero?.resumeUrl || apiData.resumeUrl || fallbackData.hero?.resumeUrl || fallbackData.resumeUrl || '/resume/Yashika%20Sapra.pdf',
             imageUrl: apiData.hero?.imageUrl || '/images/professional image.jpeg'
           },
           about: {
@@ -162,15 +197,9 @@ const usePortfolioData = () => {
               ? apiData.skills.tools
               : (Array.isArray(fallbackData.skills?.tools) ? fallbackData.skills.tools : [])
           },
-          projects: (Array.isArray(apiData.projects) && apiData.projects.length > 0)
-            ? apiData.projects
-            : (Array.isArray(fallbackData.projects) ? fallbackData.projects : []),
-          certifications: (Array.isArray(apiData.certifications) && apiData.certifications.length > 0)
-            ? apiData.certifications
-            : (Array.isArray(fallbackData.certifications) ? fallbackData.certifications : []),
-          achievements: (Array.isArray(apiData.achievements) && apiData.achievements.length > 0)
-            ? apiData.achievements
-            : (Array.isArray(fallbackData.achievements) ? fallbackData.achievements : []),
+          projects: mergeByTitle(apiData.projects, fallbackData.projects),
+          certifications: mergeByTitle(apiData.certifications, fallbackData.certifications),
+          achievements: mergeByTitle(apiData.achievements, fallbackData.achievements),
           workshops: (Array.isArray(apiData.workshops) && apiData.workshops.length > 0)
             ? apiData.workshops
             : (Array.isArray(fallbackData.workshops) ? fallbackData.workshops : []),

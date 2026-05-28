@@ -147,13 +147,25 @@
             "title": "Nirmaan",
             "description": "Multi-agent AI system that autonomously manages job applications, parses recruiter emails, and categorizes opportunities by role fit.",
             "github": "#",
-            "demo": "#"
+            "demo": "#",
+            "imageUrl": "/images/nirmaan project.png",
+            "tags": [
+                "AI Agents",
+                "Automation",
+                "Full Stack"
+            ]
         },
         {
             "title": "Student Welfare Platform",
             "description": "A platform to connect students with resources and support for their well-being.",
             "github": "#",
-            "demo": "#"
+            "demo": "#",
+            "imageUrl": "/images/student welfare platform project.png",
+            "tags": [
+                "Student Support",
+                "Web Platform",
+                "Community"
+            ]
         },
         {
             "title": "Manthan",
@@ -171,7 +183,13 @@
             "title": "Movie and Song Recommendation",
             "description": "A recommendation system for movies and songs.",
             "github": "#",
-            "demo": "#"
+            "demo": "#",
+            "imageUrl": "/images/Movie and song recoomendation project.png",
+            "tags": [
+                "Recommendation",
+                "Machine Learning",
+                "Python"
+            ]
         }
     ],
     "education": [
@@ -230,6 +248,38 @@
             "learned": "Autonomous system design, reliability patterns at scale",
             "applied": "Direct application to Nirmaan multi-agent orchestration.",
             "image": "/images/agentic ai workshop certificate.png"
+        },
+        {
+            "title": "Introduction to Artificial Intelligence",
+            "issuer": "Simplilearn",
+            "date": "Jul 2025",
+            "learned": "AI fundamentals, intelligent systems, and applied AI concepts",
+            "applied": "Strengthened the foundation for building AI-driven portfolio projects.",
+            "image": "/images/simpli learn introduction to artificial intelligence.pdf"
+        },
+        {
+            "title": "Introduction to Generative AI",
+            "issuer": "Simplilearn",
+            "date": "Aug 2025",
+            "learned": "Generative AI concepts, model use cases, and prompt workflows",
+            "applied": "Applied generative AI concepts in agentic and automation-focused project work.",
+            "image": "/images/simpli learn introduction to generative ai.pdf"
+        },
+        {
+            "title": "Power BI",
+            "issuer": "Simplilearn",
+            "date": "Aug 2025",
+            "learned": "Dashboarding, data visualization, and business intelligence reporting",
+            "applied": "Used visualization thinking to present project metrics and insights clearly.",
+            "image": "/images/simpli learn power bi.pdf"
+        },
+        {
+            "title": "Raspberry Pi and Python",
+            "issuer": "Thinqbator",
+            "date": "Feb 2024",
+            "learned": "Python programming for Raspberry Pi and embedded computing basics",
+            "applied": "Connected IoT and embedded system learning to prototype-based technical projects.",
+            "image": "/images/thinqbator rasberry pi and python.pdf"
         }
     ],
     "achievements": [
@@ -291,7 +341,8 @@
             "date": "2024",
             "images": [
                 "/images/Innovative bharat1.jpg",
-                "/images/Innovative bharat2.jpeg"
+                "/images/Innovative bharat2.jpeg",
+                "/images/Innovative bharat3.jpg"
             ]
         },
         {

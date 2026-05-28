@@ -71,7 +71,7 @@ const Hero = ({ hero }) => {
                     <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-5 pt-4">
                         <a
                             href={safeHero.resumeUrl}
-                            download
+                            download="Yashika Sapra.pdf"
                             className="btn-primary"
                         >
                             <FaFileDownload />

@@ -4,6 +4,7 @@ import { FaTimes, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 const Modal = ({ onClose, project }) => {
     // Ensure tech is always an array
     const tech = Array.isArray(project?.tech) ? project.tech : [];
+    const imageUrl = project?.imageUrl || project?.image || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800";
 
     return (
         <AnimatePresence>
@@ -32,7 +33,7 @@ const Modal = ({ onClose, project }) => {
                         <div className="grid md:grid-cols-2">
                             <div className="h-48 md:h-auto bg-[#07101d] relative">
                                 <img
-                                    src={project.image}
+                                    src={imageUrl}
                                     alt={project.title}
                                     className="w-full h-full object-cover absolute inset-0"
                                 />
