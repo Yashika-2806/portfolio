@@ -59,7 +59,7 @@ const AchievementItem = ({ item, index }) => {
         >
             <div>
                 {/* Image Section */}
-                <div className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
+                <div className="relative w-full aspect-[4/3] bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
                     {images.length > 0 ? (
                         <>
                             <AnimatePresence mode="wait">
