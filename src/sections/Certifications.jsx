@@ -132,25 +132,15 @@ const Certifications = ({ certifications }) => {
 
 const CertificationCard = ({ cert, index }) => {
     const [currentImage, setCurrentImage] = useState(0);
-    // Ensure cert has safe defaults
-    const images = Array.isArray(cert?.images) ? cert.images : [];
+    // Ensure cert has safe defaults - use 'image' field from db.json
+    const images = cert?.image ? [cert.image] : [];
     const safeCert = {
         title: cert?.title || 'Certification',
         issuer: cert?.issuer || 'Issuer',
-        imageUrl: cert?.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
-        credentialUrl: cert?.credentialUrl || '#'
-    };
-
-    const nextImage = () => {
-        if (images.length > 0) {
-            setCurrentImage((prev) => (prev + 1) % images.length);
-        }
-    };
-
-    const prevImage = () => {
-        if (images.length > 0) {
-            setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
-        }
+        date: cert?.date || '',
+        learned: cert?.learned || '',
+        applied: cert?.applied || '',
+        image: cert?.image || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800'
     };
 
     return (
@@ -161,29 +151,24 @@ const CertificationCard = ({ cert, index }) => {
             viewport={{ once: true, amount: 0.3 }}
             className="panel rounded-2xl overflow-hidden group"
         >
-            <div className="relative aspect-video overflow-hidden">
-                <img
-                    src={safeCert.imageUrl}
-                    alt={safeCert.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="relative aspect-video bg-[#0a1428] overflow-hidden">
+                <CertificatePreview src={safeCert.image} alt={safeCert.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-lg font-bold text-white leading-tight">{safeCert.title}</h3>
                 </div>
             </div>
             <div className="p-5">
+                <p className="text-xs text-[#7ee9ff] font-semibold mb-1">{safeCert.date}</p>
                 <p className="text-sm text-[#9ab0df] mb-3">
                     <span className="font-semibold text-[#7ee9ff]">Issued by:</span> {safeCert.issuer}
                 </p>
-                <a
-                    href={safeCert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full text-center block py-2 bg-[var(--neon-blue)]/20 text-[var(--neon-cyan)] rounded-lg border border-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/40 transition-all font-semibold text-sm"
-                >
-                    View Credential
-                </a>
+                {safeCert.learned && (
+                    <p className="text-xs text-[#8aa0d4] mb-2"><span className="font-semibold">Learned:</span> {safeCert.learned}</p>
+                )}
+                {safeCert.applied && (
+                    <p className="text-xs text-[#8aa0d4]"><span className="font-semibold">Applied:</span> {safeCert.applied}</p>
+                )}
             </div>
         </motion.div>
     );
