@@ -10,7 +10,7 @@ const Achievements = ({ achievements }) => {
     return (
         <section id="achievements" className="section-shell">
             <SectionTitle>Honors & Achievements</SectionTitle>
-            <div className="mt-12 md:mt-20 max-w-5xl mx-auto space-y-10">
+            <div className="mt-12 md:mt-20 max-w-6xl mx-auto space-y-12">
                 {safeAchievements.length > 0 ? safeAchievements.map((item, index) => (
                     <AchievementItem key={index} item={item} index={index} />
                 )) : (
@@ -57,9 +57,9 @@ const AchievementItem = ({ item, index }) => {
             viewport={{ once: true, amount: 0.3 }}
             className="border border-[var(--line)] rounded-2xl overflow-hidden bg-gradient-to-br from-[#0a1428] to-[#08101f] shadow-lg hover:shadow-[0_0_20px_rgba(55,240,255,0.15)] transition-shadow"
         >
-            <div className="grid md:grid-cols-[1fr_1.2fr] gap-0">
+            <div className="grid md:grid-cols-[1.05fr_1.25fr] gap-0">
                 {/* Image Section */}
-                <div className="relative h-[300px] md:h-[380px] bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
+                <div className="relative h-[340px] md:h-[440px] bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
                     {images.length > 0 ? (
                         <>
                             <AnimatePresence mode="wait">
@@ -108,15 +108,15 @@ const AchievementItem = ({ item, index }) => {
                 </div>
 
                 {/* Text Section */}
-                <div className="p-6 md:p-8 flex flex-col justify-center">
-                    <div className="flex items-start gap-3 mb-3">
-                        <span className="text-2xl">{safeItem.icon}</span>
+                <div className="p-7 md:p-10 flex flex-col justify-center">
+                    <div className="flex items-start gap-4 mb-4">
+                        <span className="text-3xl">{safeItem.icon}</span>
                         <div className="flex-1">
                             <p className="text-xs md:text-sm text-[#7ee9ff] font-semibold uppercase tracking-wider">{safeItem.date}</p>
-                            <h3 className="text-lg md:text-2xl font-bold text-white mt-1">{safeItem.title}</h3>
+                            <h3 className="text-xl md:text-3xl font-bold text-white mt-1 leading-tight">{safeItem.title}</h3>
                         </div>
                     </div>
-                    <p className="text-sm md:text-base text-[#b3c8f3] leading-relaxed">
+                    <p className="text-base md:text-lg text-[#b3c8f3] leading-relaxed">
                         {safeItem.description}
                     </p>
                 </div>
