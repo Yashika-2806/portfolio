@@ -11,29 +11,24 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 
 const CertificatePreview = ({ src, alt }) => {
     const canvasRef = useRef(null);
-    const wrapperRef = useRef(null);
     const [hasError, setHasError] = useState(false);
+    const [imageUrl, setImageUrl] = useState(null);
+
+    const isPdf = src && src.toLowerCase().endsWith('.pdf');
 
     useEffect(() => {
+        if (!isPdf) return;
+
         let cancelled = false;
-        let renderTask = null;
         let loadingTask = null;
+        let renderTask = null;
 
-        const renderCertificate = async () => {
-            const canvas = canvasRef.current;
-            const wrapper = wrapperRef.current;
-
-            if (!canvas || !wrapper) {
-                return;
-            }
-
+        const renderPdf = async () => {
             setHasError(false);
 
             try {
                 const response = await fetch(encodeURI(src));
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${src}`);
-                }
+                if (!response.ok) throw new Error(`Failed to load ${src}`);
 
                 const pdfData = await response.arrayBuffer();
                 loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfData) });
@@ -45,58 +40,74 @@ const CertificatePreview = ({ src, alt }) => {
 
                 if (cancelled) return;
 
-                const wrapperWidth = wrapper.clientWidth || 1;
-                const wrapperHeight = wrapper.clientHeight || 1;
-                const baseViewport = page.getViewport({ scale: 1 });
-                const scale = Math.min(
-                    wrapperWidth / baseViewport.width,
-                    wrapperHeight / baseViewport.height
-                );
-                const viewport = page.getViewport({ scale });
-                const context = canvas.getContext("2d");
+                // Render at 2x scale for crisp quality
+                const viewport = page.getViewport({ scale: 2.5 });
+                const canvas = canvasRef.current;
+                if (!canvas) return;
 
+                const context = canvas.getContext("2d");
                 if (!context) return;
 
-                canvas.width = Math.floor(viewport.width);
-                canvas.height = Math.floor(viewport.height);
-                canvas.style.width = `${Math.floor(viewport.width)}px`;
-                canvas.style.height = `${Math.floor(viewport.height)}px`;
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
 
                 renderTask = page.render({ canvasContext: context, viewport });
                 await renderTask.promise;
-            } catch {
+
                 if (!cancelled) {
-                    setHasError(true);
+                    // Convert canvas to image URL for better CSS scaling
+                    setImageUrl(canvas.toDataURL());
                 }
+            } catch {
+                if (!cancelled) setHasError(true);
             }
         };
 
-        renderCertificate();
+        renderPdf();
 
         return () => {
             cancelled = true;
             if (renderTask) renderTask.cancel();
             if (loadingTask) loadingTask.destroy();
         };
-    }, [src]);
+    }, [src, isPdf]);
 
-    return (
-        <div
-            ref={wrapperRef}
-            className="w-full h-full overflow-hidden flex items-center justify-center bg-[#0a1428] rounded-xl"
-        >
-            {hasError ? (
+    // For non-PDF images (png, jpg, etc.)
+    if (!isPdf) {
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-[#0a1428]">
                 <img
                     src={src}
                     alt={alt}
-                    className="w-full h-full object-contain block"
+                    className="w-full h-full object-contain"
+                    onError={() => setHasError(true)}
+                />
+            </div>
+        );
+    }
+
+    // For PDFs - show the rendered image
+    return (
+        <div className="w-full h-full flex items-center justify-center bg-[#0a1428]">
+            {/* Hidden canvas for rendering */}
+            <canvas ref={canvasRef} style={{ display: 'none' }} />
+
+            {hasError ? (
+                <div className="flex flex-col items-center gap-3 text-[#4a6a9e]">
+                    <FaAward className="text-5xl" />
+                    <span className="text-sm">Could not load certificate</span>
+                </div>
+            ) : imageUrl ? (
+                <img
+                    src={imageUrl}
+                    alt={alt}
+                    className="w-full h-full object-contain"
                 />
             ) : (
-                <canvas
-                    ref={canvasRef}
-                    aria-label={alt}
-                    className="block max-w-full max-h-full"
-                />
+                <div className="flex items-center gap-3 text-[#6a8dc7]">
+                    <div className="w-6 h-6 border-2 border-dashed rounded-full animate-spin border-[var(--neon-cyan)]"></div>
+                    <span className="text-sm">Loading certificate...</span>
+                </div>
             )}
         </div>
     );
@@ -116,23 +127,23 @@ const CertificateSection = ({ cert, index }) => {
         <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="w-full max-w-5xl mx-auto"
         >
             <div className="panel rounded-2xl overflow-hidden">
-                {/* Certificate image - large, covering full width */}
-                <div className="w-full min-h-[350px] md:min-h-[480px] lg:min-h-[520px] relative">
+                {/* Certificate image - full width, large */}
+                <div className="w-full aspect-[4/3] md:aspect-[16/10] relative bg-[#0a1428]">
                     {safeCert.image ? (
                         <CertificatePreview src={safeCert.image} alt={safeCert.title} />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center min-h-[350px] md:min-h-[480px] bg-[#0a1428] rounded-xl">
+                        <div className="w-full h-full flex items-center justify-center">
                             <FaAward className="text-7xl text-[#1e2d4a]" />
                         </div>
                     )}
                 </div>
 
-                {/* Certificate details below the image */}
+                {/* Certificate details below */}
                 <div className="p-6 md:p-8 bg-[#060e1a]/80">
                     <div className="flex flex-wrap items-center gap-3 mb-3">
                         <FaAward className="text-[var(--neon-cyan)] text-2xl" />
