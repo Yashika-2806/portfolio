@@ -44,16 +44,25 @@ function MainLayout() {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-[#03111f] text-white text-2xl">
-        Loading Portfolio...
+      <div className="bg-[#030712] min-h-screen flex items-center justify-center text-white">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[var(--neon-cyan)] mx-auto"></div>
+          <h1 className="text-3xl font-bold mt-6">Loading Portfolio...</h1>
+          <p className="text-lg text-[#a4bbeb] mt-2">Please wait a moment.</p>
+        </div>
       </div>
     );
   }
 
   if (!portfolioData) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-[#03111f] text-white text-2xl">
-        Error: Could not load portfolio data.
+      <div className="bg-[#030712] min-h-screen flex items-center justify-center text-white">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold">Error</h1>
+          <p className="text-lg text-[#a4bbeb] mt-2">
+            Could not load portfolio data. Please try again later.
+          </p>
+        </div>
       </div>
     );
   }
@@ -91,40 +100,13 @@ function MainLayout() {
 }
 
 function App() {
-  const { portfolioData, loading } = usePortfolioData();
-
-  if (loading) {
-    return (
-      <div className="bg-[#030712] min-h-screen flex items-center justify-center text-white">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[var(--neon-cyan)] mx-auto"></div>
-          <h1 className="text-3xl font-bold mt-6">Loading Portfolio...</h1>
-          <p className="text-lg text-[#a4bbeb] mt-2">Please wait a moment.</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!portfolioData) {
-    return (
-      <div className="bg-[#030712] min-h-screen flex items-center justify-center text-white">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Error</h1>
-          <p className="text-lg text-[#a4bbeb] mt-2">
-            Could not load portfolio data. Please try again later.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-[#030712]">
-      <Navbar social={portfolioData.social} />
-      <Hero hero={portfolioData.hero} />
-      <MainLayout portfolioData={portfolioData} />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
   );
 }
 
