@@ -98,61 +98,89 @@ const usePortfolioData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api');
-        // API returns { success: true, data: portfolioData }
         const apiData = response.data.data || response.data;
         
-        // Always use API data if response exists (even if partially incomplete)
-        // transformData will apply safe defaults for missing fields
-        if (apiData) {
-          const safeData = {
-            name: apiData.name || 'Portfolio',
-            hero: {
-              tagline: apiData.bio || 'Welcome',
-              title: Array.isArray(apiData.title) ? apiData.title : ['Build', 'the Future'],
-              roles: Array.isArray(apiData.typewriter) ? apiData.typewriter : ['Developer'],
-              description: apiData.bio || 'Creating amazing things',
-              resumeUrl: apiData.hero?.resumeUrl || '#',
-              imageUrl: apiData.hero?.imageUrl || '/images/profile.jpg'
-            },
-            about: {
-              imageUrl: apiData.about?.imageUrl || '/images/profile.jpg',
-              quote: apiData.about?.quote || 'I build intelligent systems from neurons to APIs.',
-              title: apiData.about?.title || 'About Me',
-              description: apiData.about || 'Creating amazing things',
-              stats: Array.isArray(apiData.about?.stats) ? apiData.about.stats : [],
-              education: Array.isArray(apiData.education) ? apiData.education : []
-            },
-            social: {
-              github: apiData.social?.github || '#',
-              linkedin: apiData.social?.linkedin || '#',
-              email: apiData.social?.email || 'contact@example.com',
-              whatsapp: apiData.social?.whatsapp || '',
-              phone: apiData.social?.phone || ''
-            },
-            skills: {
-              languages: Array.isArray(apiData.skills?.languages) ? apiData.skills.languages : [],
-              frontend: Array.isArray(apiData.skills?.frontend) ? apiData.skills.frontend : [],
-              backend: Array.isArray(apiData.skills?.backend) ? apiData.skills.backend : [],
-              ai_ml: Array.isArray(apiData.skills?.ai_ml) ? apiData.skills.ai_ml : [],
-              tools: Array.isArray(apiData.skills?.tools) ? apiData.skills.tools : []
-            },
-            projects: Array.isArray(apiData.projects) ? apiData.projects : [],
-            certifications: Array.isArray(apiData.certifications) ? apiData.certifications : [],
-            achievements: Array.isArray(apiData.achievements) ? apiData.achievements : [],
-            workshops: Array.isArray(apiData.workshops) ? apiData.workshops : [],
-            contact: {
-              email: apiData.contact?.email || 'contact@example.com',
-              phone: apiData.contact?.phone || '+1 (555) 000-0000'
-            },
-            videoResume: apiData.videoResume || null
-          };
-          console.log("✅ API data loaded successfully:", safeData);
-          setPortfolioData(safeData);
-        } else {
-          // If API returns null/undefined, use fallback
-          console.log("📦 No API data, using fallback from db.json");
-          setPortfolioData(transformData(fallbackData));
-        }
+        console.log("📡 Raw API Response:", apiData);
+        
+        // Use API data but fill missing/empty arrays from fallback db.json
+        const finalData = {
+          name: apiData.name || fallbackData.name || 'Portfolio',
+          hero: {
+            tagline: apiData.bio || fallbackData.bio || 'Welcome',
+            title: (Array.isArray(apiData.title) && apiData.title.length > 0) 
+              ? apiData.title 
+              : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Build', 'the Future']),
+            roles: (Array.isArray(apiData.typewriter) && apiData.typewriter.length > 0) 
+              ? apiData.typewriter 
+              : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Developer']),
+            description: apiData.bio || fallbackData.bio || 'Creating amazing things',
+            resumeUrl: apiData.hero?.resumeUrl || '#',
+            imageUrl: apiData.hero?.imageUrl || '/images/profile.jpg'
+          },
+          about: {
+            imageUrl: apiData.about?.imageUrl || '/images/profile.jpg',
+            quote: apiData.about?.quote || 'I build intelligent systems from neurons to APIs.',
+            title: apiData.about?.title || 'About Me',
+            description: apiData.about || fallbackData.about || 'Creating amazing things',
+            stats: (Array.isArray(apiData.about?.stats) && apiData.about.stats.length > 0)
+              ? apiData.about.stats
+              : (Array.isArray(fallbackData.stats) ? fallbackData.stats : []),
+            education: (Array.isArray(apiData.education) && apiData.education.length > 0)
+              ? apiData.education
+              : (Array.isArray(fallbackData.education) ? fallbackData.education : [])
+          },
+          social: {
+            github: apiData.social?.github || fallbackData.social?.github || '#',
+            linkedin: apiData.social?.linkedin || fallbackData.social?.linkedin || '#',
+            email: apiData.social?.email || fallbackData.social?.email || 'contact@example.com',
+            whatsapp: apiData.social?.whatsapp || fallbackData.social?.whatsapp || '',
+            phone: apiData.social?.phone || fallbackData.social?.phone || ''
+          },
+          skills: {
+            languages: (Array.isArray(apiData.skills?.languages) && apiData.skills.languages.length > 0)
+              ? apiData.skills.languages
+              : (Array.isArray(fallbackData.skills?.languages) ? fallbackData.skills.languages : []),
+            frontend: (Array.isArray(apiData.skills?.frontend) && apiData.skills.frontend.length > 0)
+              ? apiData.skills.frontend
+              : (Array.isArray(fallbackData.skills?.frontend) ? fallbackData.skills.frontend : []),
+            backend: (Array.isArray(apiData.skills?.backend) && apiData.skills.backend.length > 0)
+              ? apiData.skills.backend
+              : (Array.isArray(fallbackData.skills?.backend) ? fallbackData.skills.backend : []),
+            ai_ml: (Array.isArray(apiData.skills?.ai_ml) && apiData.skills.ai_ml.length > 0)
+              ? apiData.skills.ai_ml
+              : (Array.isArray(fallbackData.skills?.ai_ml) ? fallbackData.skills.ai_ml : []),
+            tools: (Array.isArray(apiData.skills?.tools) && apiData.skills.tools.length > 0)
+              ? apiData.skills.tools
+              : (Array.isArray(fallbackData.skills?.tools) ? fallbackData.skills.tools : [])
+          },
+          projects: (Array.isArray(apiData.projects) && apiData.projects.length > 0)
+            ? apiData.projects
+            : (Array.isArray(fallbackData.projects) ? fallbackData.projects : []),
+          certifications: (Array.isArray(apiData.certifications) && apiData.certifications.length > 0)
+            ? apiData.certifications
+            : (Array.isArray(fallbackData.certifications) ? fallbackData.certifications : []),
+          achievements: (Array.isArray(apiData.achievements) && apiData.achievements.length > 0)
+            ? apiData.achievements
+            : (Array.isArray(fallbackData.achievements) ? fallbackData.achievements : []),
+          workshops: (Array.isArray(apiData.workshops) && apiData.workshops.length > 0)
+            ? apiData.workshops
+            : (Array.isArray(fallbackData.workshops) ? fallbackData.workshops : []),
+          contact: {
+            email: apiData.contact?.email || fallbackData.contact?.email || 'contact@example.com',
+            phone: apiData.contact?.phone || fallbackData.contact?.phone || '+1 (555) 000-0000'
+          },
+          videoResume: apiData.videoResume || null
+        };
+        
+        console.log("✅ FINAL DATA (merged with fallback):", {
+          projectsLength: finalData.projects.length,
+          certificationsLength: finalData.certifications.length,
+          achievementsLength: finalData.achievements.length,
+          workshopsLength: finalData.workshops.length,
+          skillsCategories: Object.keys(finalData.skills).length
+        });
+        
+        setPortfolioData(finalData);
       } catch (error) {
         console.warn("⚠️ API fetch failed, using fallback data:", error.message);
         // If API call fails completely, use transformed fallback with complete defaults
