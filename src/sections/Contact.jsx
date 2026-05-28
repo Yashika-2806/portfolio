@@ -1,4 +1,5 @@
-import { useState, motion } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaLinkedin } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
 
