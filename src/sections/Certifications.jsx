@@ -9,6 +9,72 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     import.meta.url
 ).toString();
 
+const getTrimmedCanvasUrl = (sourceCanvas) => {
+    const context = sourceCanvas.getContext("2d");
+    if (!context) return sourceCanvas.toDataURL();
+
+    const { width, height } = sourceCanvas;
+    const imageData = context.getImageData(0, 0, width, height);
+    const pixels = imageData.data;
+
+    const sample = (x, y) => {
+        const index = (y * width + x) * 4;
+        return [pixels[index], pixels[index + 1], pixels[index + 2]];
+    };
+
+    const cornerSamples = [
+        sample(0, 0),
+        sample(width - 1, 0),
+        sample(0, height - 1),
+        sample(width - 1, height - 1),
+    ];
+    const pageBackground = cornerSamples.reduce(
+        (acc, color) => color.map((value, index) => acc[index] + value),
+        [0, 0, 0]
+    ).map((value) => value / cornerSamples.length);
+
+    let minX = width;
+    let minY = height;
+    let maxX = 0;
+    let maxY = 0;
+    const threshold = 28;
+
+    for (let y = 0; y < height; y += 1) {
+        for (let x = 0; x < width; x += 1) {
+            const index = (y * width + x) * 4;
+            const alpha = pixels[index + 3];
+            const distance =
+                Math.abs(pixels[index] - pageBackground[0]) +
+                Math.abs(pixels[index + 1] - pageBackground[1]) +
+                Math.abs(pixels[index + 2] - pageBackground[2]);
+
+            if (alpha > 12 && distance > threshold) {
+                minX = Math.min(minX, x);
+                minY = Math.min(minY, y);
+                maxX = Math.max(maxX, x);
+                maxY = Math.max(maxY, y);
+            }
+        }
+    }
+
+    if (minX >= maxX || minY >= maxY) return sourceCanvas.toDataURL();
+
+    const padding = Math.round(Math.min(width, height) * 0.035);
+    const cropX = Math.max(0, minX - padding);
+    const cropY = Math.max(0, minY - padding);
+    const cropWidth = Math.min(width - cropX, maxX - minX + padding * 2);
+    const cropHeight = Math.min(height - cropY, maxY - minY + padding * 2);
+
+    const trimmedCanvas = document.createElement("canvas");
+    trimmedCanvas.width = cropWidth;
+    trimmedCanvas.height = cropHeight;
+    trimmedCanvas
+        .getContext("2d")
+        ?.drawImage(sourceCanvas, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+    return trimmedCanvas.toDataURL();
+};
+
 const CertificatePreview = ({ src, alt }) => {
     const canvasRef = useRef(null);
     const [hasError, setHasError] = useState(false);
@@ -55,8 +121,7 @@ const CertificatePreview = ({ src, alt }) => {
                 await renderTask.promise;
 
                 if (!cancelled) {
-                    // Convert canvas to image URL for better CSS scaling
-                    setImageUrl(canvas.toDataURL());
+                    setImageUrl(getTrimmedCanvasUrl(canvas));
                 }
             } catch {
                 if (!cancelled) setHasError(true);
@@ -76,12 +141,19 @@ const CertificatePreview = ({ src, alt }) => {
     if (!isPdf) {
         return (
             <div className="w-full h-full flex items-center justify-center bg-[#0a1428]">
-                <img
-                    src={src}
-                    alt={alt}
-                    className="w-full h-full object-contain"
-                    onError={() => setHasError(true)}
-                />
+                {hasError ? (
+                    <div className="flex flex-col items-center gap-3 text-[#4a6a9e]">
+                        <FaAward className="text-5xl" />
+                        <span className="text-sm">Could not load certificate</span>
+                    </div>
+                ) : (
+                    <img
+                        src={src}
+                        alt={alt}
+                        className="w-full h-full object-cover"
+                        onError={() => setHasError(true)}
+                    />
+                )}
             </div>
         );
     }
@@ -101,7 +173,7 @@ const CertificatePreview = ({ src, alt }) => {
                 <img
                     src={imageUrl}
                     alt={alt}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                 />
             ) : (
                 <div className="flex items-center gap-3 text-[#6a8dc7]">
