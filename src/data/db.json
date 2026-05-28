@@ -265,8 +265,7 @@
             "date": "2024",
             "images": [
                 "/images/Poster1.jpg",
-                "/images/Poster2.jpeg",
-                "/images/Poster3.jpeg"
+                "/images/Poster2.jpeg"
             ]
         },
         {
@@ -274,7 +273,7 @@
             "description": "94/100 - Highest score among 150+ competitors. Algorithms, system design, databases. Fundamentals matter.",
             "date": "2024",
             "images": [
-                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
+                "/images/certificate poster ibm.jpg"
             ]
         },
         {

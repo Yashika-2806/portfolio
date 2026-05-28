@@ -11,10 +11,10 @@ const DEFAULT_PORTFOLIO_DATA = {
     roles: ['Developer'],
     description: 'Creating amazing things',
     resumeUrl: '#',
-    imageUrl: '/images/profile.jpg'
+    imageUrl: '/images/professional image.jpeg'
   },
   about: {
-    imageUrl: '/images/profile.jpg',
+    imageUrl: '/images/professional image.jpeg',
     quote: 'Welcome to my portfolio',
     title: 'About Me',
     description: 'Creating amazing things',
@@ -56,10 +56,10 @@ const transformData = (rawData) => {
       roles: Array.isArray(rawData.typewriter) ? rawData.typewriter : ['Developer'],
       description: rawData.bio || 'Creating amazing things',
       resumeUrl: '#',
-      imageUrl: '/images/profile.jpg'
+      imageUrl: '/images/professional image.jpeg'
     },
     about: {
-      imageUrl: '/images/profile.jpg',
+      imageUrl: '/images/professional image.jpeg',
       quote: 'I build intelligent systems from neurons to APIs.',
       title: 'About Me',
       description: rawData.about || 'Creating amazing things',
@@ -115,10 +115,10 @@ const usePortfolioData = () => {
               : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Developer']),
             description: apiData.bio || fallbackData.bio || 'Creating amazing things',
             resumeUrl: apiData.hero?.resumeUrl || '#',
-            imageUrl: apiData.hero?.imageUrl || '/images/profile.jpg'
+            imageUrl: apiData.hero?.imageUrl || '/images/professional image.jpeg'
           },
           about: {
-            imageUrl: apiData.about?.imageUrl || '/images/profile.jpg',
+            imageUrl: apiData.about?.imageUrl || '/images/professional image.jpeg',
             quote: apiData.about?.quote || 'I build intelligent systems from neurons to APIs.',
             title: apiData.about?.title || 'About Me',
             description: apiData.about || fallbackData.about || 'Creating amazing things',
