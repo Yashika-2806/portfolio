@@ -52,7 +52,7 @@ const transformData = (rawData) => {
     name: rawData.name || 'Portfolio',
     hero: {
       tagline: rawData.tagline || 'Welcome',
-      title: Array.isArray(rawData.title) ? rawData.title : ['Build', 'the Future'],
+      title: Array.isArray(rawData.title) ? rawData.title : ['Hi, I am', rawData.name || 'Yashika Sapra'],
       roles: Array.isArray(rawData.typewriter) ? rawData.typewriter : ['Developer'],
       description: rawData.bio || 'Creating amazing things',
       resumeUrl: '#',
@@ -109,7 +109,7 @@ const usePortfolioData = () => {
             tagline: apiData.tagline || fallbackData.tagline || 'Welcome',
             title: (Array.isArray(apiData.title) && apiData.title.length > 0) 
               ? apiData.title 
-              : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Build', 'the Future']),
+              : (Array.isArray(fallbackData.title) && fallbackData.title.length > 0 ? fallbackData.title : ['Hi, I am', fallbackData.name || 'Yashika Sapra']),
             roles: (Array.isArray(apiData.typewriter) && apiData.typewriter.length > 0) 
               ? apiData.typewriter 
               : (fallbackData.typewriter && fallbackData.typewriter.length > 0 ? fallbackData.typewriter : ['Developer']),

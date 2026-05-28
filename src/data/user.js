@@ -3,7 +3,7 @@ import { SiJavascript, SiTypescript, SiTailwindcss, SiNextdotjs, SiMongodb, SiPo
 
 export const user = {
     name: "Yashika Sapra",
-    bio: "AI Systems Engineer | Building Production-Grade AI & Full-Stack Systems",
+    bio: "Building Production-Grade AI & Full-Stack Systems",
     typewriter: ["AI Systems Engineer", "Full Stack Builder", "ML Infrastructure Specialist", "Systems Architect"],
     about: `I build intelligent systems from neurons to APIs.\n\n**Three things:**\n1. I think like a systems architect, not a learner → I design for production: scalability, monitoring, failure handling.\n\n2. I ship the full stack → ML models + APIs + frontends + DevOps. I don't stop at notebooks.\n\n3. I solve real problems → Multi-agent AI for job automation. IoT networks handling 1000+ events/sec. Data systems processing millions.\n\n**Currently:** B.Tech CS (AI/ML/IoT specialization, 2023–2027) at GLA University\n\n**Previously:** 5+ hackathon wins. 15+ production projects. Multiple technical competitions. Shipped systems used by 50+ beta users.\n\nI obsess over impact metrics: latency, throughput, reliability. Every system I build has real numbers attached.`,
     stats: [
