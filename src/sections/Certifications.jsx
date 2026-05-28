@@ -132,8 +132,14 @@ const Certifications = ({ certifications }) => {
 
 const CertificationCard = ({ cert, index }) => {
     const [currentImage, setCurrentImage] = useState(0);
-    // Ensure cert.images is always an array
+    // Ensure cert has safe defaults
     const images = Array.isArray(cert?.images) ? cert.images : [];
+    const safeCert = {
+        title: cert?.title || 'Certification',
+        issuer: cert?.issuer || 'Issuer',
+        imageUrl: cert?.imageUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
+        credentialUrl: cert?.credentialUrl || '#'
+    };
 
     const nextImage = () => {
         if (images.length > 0) {
@@ -157,21 +163,21 @@ const CertificationCard = ({ cert, index }) => {
         >
             <div className="relative aspect-video overflow-hidden">
                 <img
-                    src={cert.imageUrl}
-                    alt={cert.title}
+                    src={safeCert.imageUrl}
+                    alt={safeCert.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-lg font-bold text-white leading-tight">{cert.title}</h3>
+                    <h3 className="text-lg font-bold text-white leading-tight">{safeCert.title}</h3>
                 </div>
             </div>
             <div className="p-5">
                 <p className="text-sm text-[#9ab0df] mb-3">
-                    <span className="font-semibold text-[#7ee9ff]">Issued by:</span> {cert.issuer}
+                    <span className="font-semibold text-[#7ee9ff]">Issued by:</span> {safeCert.issuer}
                 </p>
                 <a
-                    href={cert.credentialUrl}
+                    href={safeCert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full text-center block py-2 bg-[var(--neon-blue)]/20 text-[var(--neon-cyan)] rounded-lg border border-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/40 transition-all font-semibold text-sm"

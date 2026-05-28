@@ -27,6 +27,15 @@ const AchievementItem = ({ item, index }) => {
     const [currentImage, setCurrentImage] = useState(0);
     // Ensure images is always an array
     const images = Array.isArray(item?.images) ? item.images : [];
+    
+    // Ensure item has safe defaults
+    const safeItem = {
+        icon: item?.icon || 'fa-star',
+        date: item?.date || 'Date',
+        title: item?.title || 'Achievement',
+        description: item?.description || 'No description',
+        rotate: !!item?.rotate
+    };
 
     const nextImage = (e) => {
         e.stopPropagation();
@@ -51,11 +60,11 @@ const AchievementItem = ({ item, index }) => {
             className="relative"
         >
             <div className="absolute -left-[42px] top-1 w-8 h-8 rounded-full bg-[#09162f] border-4 border-[var(--neon-cyan)] flex items-center justify-center shadow-[0_0_10px_rgba(55,240,255,0.8)]">
-                <i className={`fa-solid ${item.icon} text-[var(--neon-cyan)] text-sm`}></i>
+                <i className={`fa-solid ${safeItem.icon} text-[var(--neon-cyan)] text-sm`}></i>
             </div>
-            <p className="text-sm text-[#7ee9ff] font-semibold mb-1">{item.date}</p>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{item.title}</h3>
-            <p className="text-base md:text-lg text-[#9ab0df]">{item.description}</p>
+            <p className="text-sm text-[#7ee9ff] font-semibold mb-1">{safeItem.date}</p>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{safeItem.title}</h3>
+            <p className="text-base md:text-lg text-[#9ab0df]">{safeItem.description}</p>
 
             <div className="grid lg:grid-cols-[1.8fr_1fr] h-full min-h-[420px] sm:min-h-[600px]">
                 <div className="relative h-[340px] sm:h-[520px] lg:h-auto bg-[#03070f] group/slider overflow-hidden flex items-center justify-center">
@@ -63,18 +72,18 @@ const AchievementItem = ({ item, index }) => {
                         <motion.img
                             key={currentImage}
                             src={images[currentImage] || ''}
-                            alt={`${item.title} - ${currentImage + 1}`}
-                            initial={{ opacity: 0, scale: item.rotate ? 1.5 : 1.1 }}
-                            animate={{ opacity: 1, scale: item.rotate ? 1.4 : 1 }}
+                            alt={`${safeItem.title} - ${currentImage + 1}`}
+                            initial={{ opacity: 0, scale: safeItem.rotate ? 1.5 : 1.1 }}
+                            animate={{ opacity: 1, scale: safeItem.rotate ? 1.4 : 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.5 }}
-                            className={`absolute inset-0 w-full h-full object-cover bg-[#111] ${item.rotate ? 'rotate-90' : ''}`}
+                            className={`absolute inset-0 w-full h-full object-cover bg-[#111] ${safeItem.rotate ? 'rotate-90' : ''}`}
                         />
                     </AnimatePresence>
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
 
-                    {images && images.length > 1 && (
+                    {images.length > 1 && (
                         <>
                             <button
                                 onClick={prevImage}
@@ -90,7 +99,7 @@ const AchievementItem = ({ item, index }) => {
                             </button>
 
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                                {images && Array.isArray(images) && images.length > 0 ? images.map((_, idx) => (
+                                {images.length > 0 ? images.map((_, idx) => (
                                     <button
                                         key={idx}
                                         onClick={(e) => { e.stopPropagation(); setCurrentImage(idx); }}
@@ -105,7 +114,7 @@ const AchievementItem = ({ item, index }) => {
                 <div className="p-5 sm:p-8 md:p-10 flex flex-col justify-center bg-transparent">
                     <div className="bg-[#081224] p-5 sm:p-8 rounded-2xl border border-[var(--line)] shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] h-full flex items-center">
                         <p className="text-[#b3c8f3] text-base sm:text-xl md:text-3xl leading-relaxed font-light text-center md:text-left">
-                            {item.description}
+                            {safeItem.description}
                         </p>
                     </div>
                 </div>

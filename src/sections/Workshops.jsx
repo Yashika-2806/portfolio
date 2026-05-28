@@ -23,6 +23,14 @@ const Workshops = ({ workshops }) => {
 };
 
 const WorkshopCard = ({ item }) => {
+    // Ensure item has safe defaults
+    const safeItem = {
+        date: item?.date || 'Date',
+        title: item?.title || 'Workshop',
+        description: item?.description || 'No description',
+        role: item?.role || 'Participant'
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -32,13 +40,13 @@ const WorkshopCard = ({ item }) => {
             className="panel p-6 md:p-8 rounded-2xl flex flex-col"
         >
             <div className="flex-grow">
-                <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{item.date}</p>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{item.title}</h3>
-                <p className="text-base text-[#9ab0df] mb-4">{item.description}</p>
+                <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{safeItem.date}</p>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{safeItem.title}</h3>
+                <p className="text-base text-[#9ab0df] mb-4">{safeItem.description}</p>
             </div>
             <div className="mt-auto pt-4 border-t border-[var(--line)]">
                 <p className="text-sm text-[#9ab0df]">
-                    <span className="font-semibold text-[#7ee9ff]">Role:</span> {item.role}
+                    <span className="font-semibold text-[#7ee9ff]">Role:</span> {safeItem.role}
                 </p>
             </div>
         </motion.div>

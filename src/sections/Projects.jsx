@@ -36,8 +36,17 @@ const Projects = ({ projects }) => {
 };
 
 const ProjectCard = ({ project, onView }) => {
+    // Ensure project has safe defaults
+    const safeProject = {
+        name: project?.name || project?.title || 'Project',
+        title: project?.title || project?.name || 'Project',
+        description: project?.description || 'No description',
+        imageUrl: project?.imageUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        tags: Array.isArray(project?.tags) ? project.tags : []
+    };
+
     // Generate a consistent random image based on the repo name length to keep it static per refresh
-    const randomImageIndex = project.name.length % 5;
+    const randomImageIndex = (safeProject.name || 'project').length % 5;
     const projectImages = [
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
         "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=800",
@@ -55,17 +64,17 @@ const ProjectCard = ({ project, onView }) => {
         >
             <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                    src={project.imageUrl}
-                    alt={project.title}
+                    src={safeProject.imageUrl}
+                    alt={safeProject.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
             </div>
             <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-[#9ab0df] text-sm mb-4 line-clamp-2">{project.description}</p>
+                <h3 className="text-xl font-bold text-white mb-2">{safeProject.title}</h3>
+                <p className="text-[#9ab0df] text-sm mb-4 line-clamp-2">{safeProject.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {Array.isArray(project?.tags) && project.tags.length > 0 ? project.tags.map((tag, index) => (
+                    {safeProject.tags.length > 0 ? safeProject.tags.map((tag, index) => (
                         <span key={index} className="bg-[#10203a] text-[#7ee9ff] text-xs font-semibold px-3 py-1 rounded-full">
                             {tag}
                         </span>

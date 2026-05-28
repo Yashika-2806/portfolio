@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import userData from '../data/db.json';
+import { safeArray } from '../utils/safeUtils';
 
 const Admin = () => {
     const [data, setData] = useState(userData);
@@ -102,7 +103,7 @@ const Admin = () => {
 
                 {/* Typewriter */}
                 <Section title="Hero Typewriter Text">
-                    {data.typewriter.map((text, index) => (
+                    {safeArray(data.typewriter).map((text, index) => (
                         <div key={index} className="flex items-center gap-2 mb-2">
                             <input type="text" value={text} onChange={(e) => handleSimpleListChange(e, index, 'typewriter')} className="w-full p-2 rounded bg-gray-700 border border-gray-600" />
                             <button type="button" onClick={() => removeItem('typewriter', index)} className="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm">X</button>
@@ -121,7 +122,7 @@ const Admin = () => {
 
                 {/* Projects */}
                 <Section title="Projects">
-                    {data.projects.map((item, index) => (
+                    {safeArray(data.projects).map((item, index) => (
                         <ItemCard key={index} onRemove={() => removeItem('projects', index)}>
                             <InputField placeholder="Title" value={item.title} onChange={(e) => handleInputChange(e, 'projects', index, 'title')} />
                             <TextareaField placeholder="Description" value={item.description} onChange={(e) => handleInputChange(e, 'projects', index, 'description')} />
@@ -135,7 +136,7 @@ const Admin = () => {
                 {/* Certifications */}
                 <Section title="Certifications">
                     <p className="text-sm text-gray-400 mb-4">For images, place the file in `/public/images/` and enter the path here (e.g., `/images/my-cert.png`).</p>
-                    {data.certifications.map((item, index) => (
+                    {safeArray(data.certifications).map((item, index) => (
                         <ItemCard key={index} onRemove={() => removeItem('certifications', index)}>
                             <InputField placeholder="Title" value={item.title} onChange={(e) => handleInputChange(e, 'certifications', index, 'title')} />
                             <InputField placeholder="Issuer" value={item.issuer} onChange={(e) => handleInputChange(e, 'certifications', index, 'issuer')} />
@@ -148,7 +149,7 @@ const Admin = () => {
 
                 {/* Education */}
                 <Section title="Education">
-                    {data.education.map((item, index) => (
+                    {safeArray(data.education).map((item, index) => (
                         <ItemCard key={index} onRemove={() => removeItem('education', index)}>
                             <InputField placeholder="Degree" value={item.degree} onChange={(e) => handleInputChange(e, 'education', index, 'degree')} />
                             <InputField placeholder="Institution" value={item.institution} onChange={(e) => handleInputChange(e, 'education', index, 'institution')} />
