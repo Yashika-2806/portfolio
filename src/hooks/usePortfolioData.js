@@ -98,53 +98,64 @@ const usePortfolioData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api');
-        // API now returns { success: true, data: portfolioData }
+        // API returns { success: true, data: portfolioData }
         const apiData = response.data.data || response.data;
         
-        // If API returns valid data with required structure, use it
-        if (apiData && apiData.hero && Object.keys(apiData).length > 0) {
-          // Ensure all required arrays are present and valid
+        // Always use API data if response exists (even if partially incomplete)
+        // transformData will apply safe defaults for missing fields
+        if (apiData) {
           const safeData = {
-            ...DEFAULT_PORTFOLIO_DATA,
-            ...apiData,
+            name: apiData.name || 'Portfolio',
             hero: {
-              ...DEFAULT_PORTFOLIO_DATA.hero,
-              ...apiData.hero,
-              title: Array.isArray(apiData?.hero?.title) ? apiData.hero.title : DEFAULT_PORTFOLIO_DATA.hero.title,
-              roles: Array.isArray(apiData?.hero?.roles) ? apiData.hero.roles : DEFAULT_PORTFOLIO_DATA.hero.roles
+              tagline: apiData.bio || 'Welcome',
+              title: Array.isArray(apiData.title) ? apiData.title : ['Build', 'the Future'],
+              roles: Array.isArray(apiData.typewriter) ? apiData.typewriter : ['Developer'],
+              description: apiData.bio || 'Creating amazing things',
+              resumeUrl: apiData.hero?.resumeUrl || '#',
+              imageUrl: apiData.hero?.imageUrl || '/images/profile.jpg'
             },
             about: {
-              ...DEFAULT_PORTFOLIO_DATA.about,
-              ...apiData.about,
-              stats: Array.isArray(apiData?.about?.stats) ? apiData.about.stats : [],
-              education: Array.isArray(apiData?.about?.education) ? apiData.about.education : []
-            },
-            projects: Array.isArray(apiData?.projects) ? apiData.projects : [],
-            skills: {
-              ...DEFAULT_PORTFOLIO_DATA.skills,
-              ...(apiData?.skills || {})
-            },
-            certifications: Array.isArray(apiData?.certifications) ? apiData.certifications : [],
-            achievements: Array.isArray(apiData?.achievements) ? apiData.achievements : [],
-            workshops: Array.isArray(apiData?.workshops) ? apiData.workshops : [],
-            contact: {
-              ...DEFAULT_PORTFOLIO_DATA.contact,
-              ...apiData.contact
+              imageUrl: apiData.about?.imageUrl || '/images/profile.jpg',
+              quote: apiData.about?.quote || 'I build intelligent systems from neurons to APIs.',
+              title: apiData.about?.title || 'About Me',
+              description: apiData.about || 'Creating amazing things',
+              stats: Array.isArray(apiData.about?.stats) ? apiData.about.stats : [],
+              education: Array.isArray(apiData.education) ? apiData.education : []
             },
             social: {
-              ...DEFAULT_PORTFOLIO_DATA.social,
-              ...apiData.social
-            }
+              github: apiData.social?.github || '#',
+              linkedin: apiData.social?.linkedin || '#',
+              email: apiData.social?.email || 'contact@example.com',
+              whatsapp: apiData.social?.whatsapp || '',
+              phone: apiData.social?.phone || ''
+            },
+            skills: {
+              languages: Array.isArray(apiData.skills?.languages) ? apiData.skills.languages : [],
+              frontend: Array.isArray(apiData.skills?.frontend) ? apiData.skills.frontend : [],
+              backend: Array.isArray(apiData.skills?.backend) ? apiData.skills.backend : [],
+              ai_ml: Array.isArray(apiData.skills?.ai_ml) ? apiData.skills.ai_ml : [],
+              tools: Array.isArray(apiData.skills?.tools) ? apiData.skills.tools : []
+            },
+            projects: Array.isArray(apiData.projects) ? apiData.projects : [],
+            certifications: Array.isArray(apiData.certifications) ? apiData.certifications : [],
+            achievements: Array.isArray(apiData.achievements) ? apiData.achievements : [],
+            workshops: Array.isArray(apiData.workshops) ? apiData.workshops : [],
+            contact: {
+              email: apiData.contact?.email || 'contact@example.com',
+              phone: apiData.contact?.phone || '+1 (555) 000-0000'
+            },
+            videoResume: apiData.videoResume || null
           };
+          console.log("✅ API data loaded successfully:", safeData);
           setPortfolioData(safeData);
         } else {
-          // If API returns incomplete data, use transformed fallback
-          console.log("API data is incomplete or missing, using fallback.");
+          // If API returns null/undefined, use fallback
+          console.log("📦 No API data, using fallback from db.json");
           setPortfolioData(transformData(fallbackData));
         }
       } catch (error) {
-        console.error("Failed to fetch data from API, using fallback.", error);
-        // If API call fails, use transformed fallback with complete defaults
+        console.warn("⚠️ API fetch failed, using fallback data:", error.message);
+        // If API call fails completely, use transformed fallback with complete defaults
         setPortfolioData(transformData(fallbackData));
       } finally {
         setLoading(false);
