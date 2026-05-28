@@ -234,82 +234,74 @@
     ],
     "achievements": [
         {
-            "icon": "🏆",
-            "date": "Jan 2025",
-            "title": "Agentic AI Workshop Winner",
-            "description": "Built and deployed autonomous multi-agent system for job automation that handles 100+ applications daily",
-            "rotate": true,
-            "images": ["/images/achievement1.jpg"]
+            "title": "🥇 1st Position - GLAU Shark Tank",
+            "description": "Won against 50+ teams with innovative B2B automation product. Focused on problem clarity + execution roadmap. Prize: ₹50K + incubation mentorship.",
+            "date": "2024",
+            "images": [
+                "/images/Shark tank1.jpeg"
+            ]
         },
         {
-            "icon": "🥇",
-            "date": "Dec 2024",
-            "title": "Hackathon Champion - AI Track",
-            "description": "First place in national hackathon for innovative multi-agent orchestration system",
-            "rotate": false,
-            "images": ["/images/achievement2.jpg"]
+            "title": "🥈 2nd Position - Technavya Digital Storytelling",
+            "description": "Ranked 2/200+ participants. Built interactive web-based story platform using React + Three.js for 3D narrative. Creative + technical excellence.",
+            "date": "2024",
+            "images": [
+                "/images/Story telling1.jpeg",
+                "/images/Story telling2.jpeg"
+            ]
         },
         {
-            "icon": "⭐",
-            "date": "Nov 2024",
-            "title": "Best AI Project Award",
-            "description": "Recognition for building production-grade AI infrastructure handling 1000+ events per second",
-            "rotate": true,
-            "images": ["/images/achievement3.jpg"]
+            "title": "⭐ AI Hackathon - Best Innovation",
+            "description": "24-hour sprint. Built real-time anomaly detection system. Won vs 120+ participants in innovation category. From ideation to working demo in 24hrs.",
+            "date": "2024",
+            "images": [
+                "/images/AI summit1.jpeg",
+                "/images/AI summit2.jpeg"
+            ]
         },
         {
-            "icon": "🎯",
-            "date": "Oct 2024",
-            "title": "Technical Innovation Prize",
-            "description": "Developed IoT network architecture with real-time data processing capabilities",
-            "rotate": false,
-            "images": ["/images/achievement4.jpg"]
+            "title": "🎖️ 1st Position - IBM ICE Day Technical Poster",
+            "description": "Won among 80+ technical presentations. Research-based poster on distributed systems optimization. Defended complex ideas under scrutiny.",
+            "date": "2024",
+            "images": [
+                "/images/Poster1.jpg",
+                "/images/Poster2.jpeg",
+                "/images/Poster3.jpeg"
+            ]
         },
         {
-            "icon": "🚀",
-            "date": "Sep 2024",
-            "title": "Campus Ambassador - AI & ML",
-            "description": "Leading AI/ML initiatives and mentoring 50+ students in advanced system design",
-            "rotate": true,
-            "images": ["/images/achievement5.jpg"]
-        }
-    ],
-    "workshops": [
-        {
-            "date": "Jan 2025",
-            "title": "Building Autonomous AI Agents at Scale",
-            "description": "Comprehensive workshop on multi-agent architecture, tool integration patterns, and production deployment strategies",
-            "role": "Instructor"
+            "title": "🏆 IBM ICE Day Technical Quiz - Top Score",
+            "description": "94/100 - Highest score among 150+ competitors. Algorithms, system design, databases. Fundamentals matter.",
+            "date": "2024",
+            "images": [
+                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
+            ]
         },
         {
-            "date": "Dec 2024",
-            "title": "Full-Stack ML Systems Design",
-            "description": "End-to-end training on building ML pipelines from data engineering to model serving with monitoring",
-            "role": "Co-Facilitator"
+            "title": "🥈 2nd Position - Tech Expo Prototype Challenge",
+            "description": "Built and demonstrated working IoT prototype. Won 2nd vs 60+ teams for technical depth + usability. Working demos > slideshows.",
+            "date": "2023",
+            "images": [
+                "/images/Tech expo1.jpeg",
+                "/images/Tech expo2.jpeg"
+            ]
         },
         {
-            "date": "Nov 2024",
-            "title": "IoT & Real-Time Systems Workshop",
-            "description": "Hands-on session on sensor networks, real-time data processing, and embedded systems optimization",
-            "role": "Lead Instructor"
+            "title": "🌟 Recognized - Innovative Bharat Initiative",
+            "description": "Selected for tech-driven national development program. Among 40 participants matched to high-impact problem statements. Scaling potential.",
+            "date": "2024",
+            "images": [
+                "/images/Innovative bharat1.jpg",
+                "/images/Innovative bharat2.jpeg"
+            ]
         },
         {
-            "date": "Oct 2024",
-            "title": "LLM Integration & Prompt Engineering",
-            "description": "Practical guide to integrating large language models into production applications with cost optimization",
-            "role": "Instructor"
-        },
-        {
-            "date": "Sep 2024",
-            "title": "DevOps & Cloud Infrastructure",
-            "description": "Deep dive into Docker, Kubernetes, CI/CD pipelines, and cloud deployment best practices",
-            "role": "Co-Facilitator"
-        },
-        {
-            "date": "Aug 2024",
-            "title": "Database Design & Optimization",
-            "description": "Advanced SQL techniques, indexing strategies, and query optimization for high-performance systems",
-            "role": "Instructor"
+            "title": "👑 Cultural Leadership - 12th Standard",
+            "description": "Selected as Cultural Head Girl (1/400 students). Organized 8 major school events. Led 25-person team. 60% school participation.",
+            "date": "2022",
+            "images": [
+                "/images/Cultural head1.jpeg"
+            ]
         }
     ],
     "social": {
