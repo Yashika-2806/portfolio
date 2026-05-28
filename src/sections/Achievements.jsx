@@ -71,7 +71,7 @@ const AchievementItem = ({ item, index }) => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5 }}
-                                    className={`absolute inset-0 w-full h-full object-contain ${safeItem.rotate ? 'rotate-90' : ''}`}
+                                    className={`absolute inset-0 w-full h-full object-cover ${safeItem.rotate ? 'rotate-90' : ''}`}
                                 />
                             </AnimatePresence>
 
