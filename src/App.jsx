@@ -25,6 +25,23 @@ function MainLayout() {
     restDelta: 0.001
   });
 
+  // Debug log - log all data being received
+  if (!loading && portfolioData) {
+    console.log("✅ PORTFOLIO DATA LOADED:", {
+      name: portfolioData.name,
+      hasHero: !!portfolioData.hero,
+      hasAbout: !!portfolioData.about,
+      skillsKeys: portfolioData.skills ? Object.keys(portfolioData.skills) : [],
+      projectsLength: Array.isArray(portfolioData.projects) ? portfolioData.projects.length : 'NOT AN ARRAY',
+      certificationsLength: Array.isArray(portfolioData.certifications) ? portfolioData.certifications.length : 'NOT AN ARRAY',
+      achievementsLength: Array.isArray(portfolioData.achievements) ? portfolioData.achievements.length : 'NOT AN ARRAY',
+      workshopsLength: Array.isArray(portfolioData.workshops) ? portfolioData.workshops.length : 'NOT AN ARRAY',
+      hasSocial: !!portfolioData.social,
+      hasContact: !!portfolioData.contact,
+      allData: portfolioData
+    });
+  }
+
   if (loading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-[#03111f] text-white text-2xl">

@@ -3,6 +3,23 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaLinke
 import SectionTitle from "../components/SectionTitle";
 
 const Contact = ({ contact, social }) => {
+    // Ensure contact has default values
+    const safeContact = {
+        email: contact?.email || 'contact@example.com',
+        phone: contact?.phone || '+1 (555) 000-0000',
+        address: contact?.address || 'Location not specified',
+        description: contact?.description || 'Get in touch for collaborations or inquiries.'
+    };
+
+    // Ensure social has default values
+    const safeSocial = {
+        whatsapp: social?.whatsapp || '#',
+        linkedin: social?.linkedin || '#',
+        github: social?.github || '#',
+        twitter: social?.twitter || '#',
+        instagram: social?.instagram || '#'
+    };
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -12,7 +29,7 @@ const Contact = ({ contact, social }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { name, email, message } = formData;
-        const phone = user.social.phone.replace(/[^0-9]/g, "");
+        const phone = safeContact.phone.replace(/[^0-9]/g, "");
         const text = `Hello, my name is ${name}.\nMy email is ${email}.\n\nMessage: ${message}`;
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
         window.open(whatsappUrl, "_blank");
@@ -48,18 +65,18 @@ const Contact = ({ contact, social }) => {
                     >
                         <div>
                             <h3 className="text-2xl font-bold text-white mb-2">Get in Touch</h3>
-                            <p className="text-lg text-[#a4bbeb]">{contact.description}</p>
+                            <p className="text-lg text-[#a4bbeb]">{safeContact.description}</p>
                         </div>
                         <div className="space-y-6">
-                            <InfoItem icon="fa-envelope" text={contact.email} href={`mailto:${contact.email}`} />
-                            <InfoItem icon="fa-phone" text={contact.phone} href={`tel:${contact.phone}`} />
-                            <InfoItem icon="fa-map-marker-alt" text={contact.address} />
+                            <InfoItem icon="fa-envelope" text={safeContact.email} href={`mailto:${safeContact.email}`} />
+                            <InfoItem icon="fa-phone" text={safeContact.phone} href={`tel:${safeContact.phone}`} />
+                            <InfoItem icon="fa-map-marker-alt" text={safeContact.address} />
                         </div>
                         <div className="flex space-x-5 pt-4">
-                            <SocialLink href={social.linkedin} icon="fa-linkedin" />
-                            <SocialLink href={social.github} icon="fa-github" />
-                            <SocialLink href={social.twitter} icon="fa-twitter" />
-                            <SocialLink href={social.instagram} icon="fa-instagram" />
+                            <SocialLink href={safeSocial.linkedin} icon="fa-linkedin" />
+                            <SocialLink href={safeSocial.github} icon="fa-github" />
+                            <SocialLink href={safeSocial.twitter} icon="fa-twitter" />
+                            <SocialLink href={safeSocial.instagram} icon="fa-instagram" />
                         </div>
                     </motion.div>
 
@@ -71,7 +88,6 @@ const Contact = ({ contact, social }) => {
                         className="panel p-6 md:p-8 rounded-2xl"
                     >
                         <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--neon-cyan)]/10 rounded-bl-full"></div>
 
                             <div className="space-y-3">
                                 <label htmlFor="name" className="text-base font-bold text-[#bdd4ff] uppercase tracking-wider">Name</label>

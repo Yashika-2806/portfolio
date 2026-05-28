@@ -35,7 +35,7 @@ const Skills = ({ skills }) => {
 
 const SkillCategory = ({ category, skills, icon, index }) => {
     // Ensure skills is always an array
-    const safeSkills = Array.isArray(skills) ? skills : [];
+    const safeSkillsArray = Array.isArray(skills) ? skills : [];
     
     // Map skills to their use cases
     const skillUseCases = {
@@ -86,7 +86,7 @@ const SkillCategory = ({ category, skills, icon, index }) => {
                 <h3 className="text-2xl font-bold text-white">{category}</h3>
             </div>
             <div className="flex flex-wrap gap-3">
-                {safeSkills.length > 0 ? safeSkills.map((skill, index) => (
+                {safeSkillsArray.length > 0 ? safeSkillsArray.map((skill, index) => (
                     <span
                         key={index}
                         className="bg-[#10203a] text-[#96b2e9] text-sm font-semibold px-4 py-2 rounded-full border border-[#263c68] hover:border-[var(--neon-cyan)]/50 hover:text-white transition-all cursor-default"

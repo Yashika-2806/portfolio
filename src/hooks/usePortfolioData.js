@@ -107,6 +107,18 @@ const usePortfolioData = () => {
           const safeData = {
             ...DEFAULT_PORTFOLIO_DATA,
             ...apiData,
+            hero: {
+              ...DEFAULT_PORTFOLIO_DATA.hero,
+              ...apiData.hero,
+              title: Array.isArray(apiData?.hero?.title) ? apiData.hero.title : DEFAULT_PORTFOLIO_DATA.hero.title,
+              roles: Array.isArray(apiData?.hero?.roles) ? apiData.hero.roles : DEFAULT_PORTFOLIO_DATA.hero.roles
+            },
+            about: {
+              ...DEFAULT_PORTFOLIO_DATA.about,
+              ...apiData.about,
+              stats: Array.isArray(apiData?.about?.stats) ? apiData.about.stats : [],
+              education: Array.isArray(apiData?.about?.education) ? apiData.about.education : []
+            },
             projects: Array.isArray(apiData?.projects) ? apiData.projects : [],
             skills: {
               ...DEFAULT_PORTFOLIO_DATA.skills,
@@ -115,8 +127,14 @@ const usePortfolioData = () => {
             certifications: Array.isArray(apiData?.certifications) ? apiData.certifications : [],
             achievements: Array.isArray(apiData?.achievements) ? apiData.achievements : [],
             workshops: Array.isArray(apiData?.workshops) ? apiData.workshops : [],
-            stats: Array.isArray(apiData?.about?.stats) ? apiData.about.stats : [],
-            education: Array.isArray(apiData?.about?.education) ? apiData.about.education : []
+            contact: {
+              ...DEFAULT_PORTFOLIO_DATA.contact,
+              ...apiData.contact
+            },
+            social: {
+              ...DEFAULT_PORTFOLIO_DATA.social,
+              ...apiData.social
+            }
           };
           setPortfolioData(safeData);
         } else {

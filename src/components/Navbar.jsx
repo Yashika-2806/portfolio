@@ -7,6 +7,15 @@ const Navbar = ({ social }) => {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    // Ensure social has safe defaults
+    const safeSocial = {
+        whatsapp: social?.whatsapp || social?.phone || '#',
+        linkedin: social?.linkedin || '#',
+        github: social?.github || '#',
+        twitter: social?.twitter || '#',
+        instagram: social?.instagram || '#'
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -76,7 +85,7 @@ const Navbar = ({ social }) => {
                 </div>
 
                 <a
-                    href={social.whatsapp}
+                    href={safeSocial.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="

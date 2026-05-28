@@ -4,6 +4,16 @@ import { Link } from "react-scroll";
 import { FaGithub, FaLinkedin, FaMedium, FaFileDownload, FaChevronDown, FaCode, FaRobot, FaDatabase } from "react-icons/fa";
 
 const Hero = ({ hero }) => {
+    // Ensure hero has safe defaults
+    const safeHero = {
+        tagline: hero?.tagline || 'Welcome',
+        title: Array.isArray(hero?.title) ? hero.title : ['Build', 'the Future'],
+        roles: Array.isArray(hero?.roles) ? hero.roles : ['Developer'],
+        description: hero?.description || 'Creating amazing things',
+        resumeUrl: hero?.resumeUrl || '#',
+        imageUrl: hero?.imageUrl || '/images/profile.jpg'
+    };
+
     return (
         <section
             id="hero"
@@ -29,14 +39,14 @@ const Hero = ({ hero }) => {
                         className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full panel mx-auto lg:mx-0"
                     >
                         <span className="w-2.5 h-2.5 rounded-full bg-[var(--neon-cyan)] animate-pulse shadow-[0_0_12px_var(--neon-cyan)]"></span>
-                        <span className="text-[#bdd5ff] text-sm font-semibold tracking-[0.12em] uppercase">{hero.tagline}</span>
+                        <span className="text-[#bdd5ff] text-sm font-semibold tracking-[0.12em] uppercase">{safeHero.tagline}</span>
                     </motion.div>
 
                     <div className="relative">
                         <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-[1.05] tracking-tight neon-title">
-                            {hero.title[0]} <br />
+                            {safeHero.title[0]} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-cyan)] via-[#e6fdff] to-[var(--neon-blue)]">
-                                {hero.title[1]}
+                                {safeHero.title[1]}
                             </span>
                         </h1>
                     </div>
@@ -44,7 +54,7 @@ const Hero = ({ hero }) => {
                     <div className="text-xl sm:text-3xl lg:text-4xl font-bold h-[42px] sm:h-[50px] flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
                         <span className="text-[var(--neon-green)] font-black text-3xl sm:text-4xl">&gt;_</span>
                         <Typewriter
-                            words={hero.roles}
+                            words={safeHero.roles}
                             loop={0}
                             cursor
                             cursorStyle="|"
@@ -55,12 +65,12 @@ const Hero = ({ hero }) => {
                     </div>
 
                     <p className="text-lg md:text-xl text-[#a4bbeb] max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        {hero.description}
+                        {safeHero.description}
                     </p>
 
                     <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-5 pt-4">
                         <a
-                            href={hero.resumeUrl}
+                            href={safeHero.resumeUrl}
                             download
                             className="btn-primary"
                         >
@@ -87,7 +97,7 @@ const Hero = ({ hero }) => {
                 >
                     <div className="aspect-square rounded-full overflow-hidden w-[70%] max-w-[380px] lg:w-full lg:max-w-none mx-auto relative z-10 shadow-[0_0_60px_rgba(55,240,255,0.4)] border-4 border-[var(--line)]">
                         <img
-                            src={hero.imageUrl}
+                            src={safeHero.imageUrl}
                             alt="Profile"
                             className="w-full h-full object-cover"
                         />
