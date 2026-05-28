@@ -87,7 +87,7 @@ function MainLayout() {
         <Certifications certifications={certifications} />
         <Achievements achievements={achievements} />
         <Workshops workshops={workshops} />
-        <Contact contact={contact} social={social} />
+        <Contact contact={contact} social={social} name={name} />
       </main>
       <footer className="text-center py-8 text-[#7f96c7] border-t border-[var(--line)]">
         <p>&copy; {new Date().getFullYear()} {name}. All rights reserved.</p>

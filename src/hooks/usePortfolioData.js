@@ -24,7 +24,9 @@ const DEFAULT_PORTFOLIO_DATA = {
   social: {
     github: '#',
     linkedin: '#',
-    email: 'contact@example.com'
+    email: 'yashika2865@gmail.com',
+    phone: '6396951934',
+    address: 'Mathura, Uttar Pradesh, India'
   },
   skills: {
     languages: [],
@@ -38,8 +40,10 @@ const DEFAULT_PORTFOLIO_DATA = {
   achievements: [],
   workshops: [],
   contact: {
-    email: 'contact@example.com',
-    phone: '+1 (555) 000-0000'
+    name: 'Yashika Sapra',
+    email: 'yashika2865@gmail.com',
+    phone: '6396951934',
+    address: 'Mathura, Uttar Pradesh, India'
   },
   videoResume: null
 };
@@ -69,7 +73,9 @@ const transformData = (rawData) => {
     social: {
       github: rawData.social?.github || '#',
       linkedin: rawData.social?.linkedin || '#',
-      email: rawData.social?.email || 'contact@example.com'
+      email: rawData.social?.email || 'yashika2865@gmail.com',
+      phone: rawData.social?.phone || '6396951934',
+      address: rawData.social?.address || 'Mathura, Uttar Pradesh, India'
     },
     skills: {
       languages: Array.isArray(rawData.skills?.languages) ? rawData.skills.languages : [],
@@ -83,8 +89,10 @@ const transformData = (rawData) => {
     achievements: Array.isArray(rawData.achievements) ? rawData.achievements : [],
     workshops: Array.isArray(rawData.workshops) ? rawData.workshops : [],
     contact: {
-      email: rawData.contact?.email || 'contact@example.com',
-      phone: rawData.contact?.phone || '+1 (555) 000-0000'
+      name: rawData.contact?.name || rawData.name || 'Yashika Sapra',
+      email: rawData.contact?.email || rawData.social?.email || 'yashika2865@gmail.com',
+      phone: rawData.contact?.phone || rawData.social?.phone || '6396951934',
+      address: rawData.contact?.address || rawData.social?.address || 'Mathura, Uttar Pradesh, India'
     },
     videoResume: rawData.videoResume || null
   };
@@ -132,9 +140,10 @@ const usePortfolioData = () => {
           social: {
             github: apiData.social?.github || fallbackData.social?.github || '#',
             linkedin: apiData.social?.linkedin || fallbackData.social?.linkedin || '#',
-            email: apiData.social?.email || fallbackData.social?.email || 'contact@example.com',
+            email: apiData.social?.email || fallbackData.social?.email || 'yashika2865@gmail.com',
             whatsapp: apiData.social?.whatsapp || fallbackData.social?.whatsapp || '',
-            phone: apiData.social?.phone || fallbackData.social?.phone || ''
+            phone: apiData.social?.phone || fallbackData.social?.phone || '',
+            address: apiData.social?.address || fallbackData.social?.address || 'Mathura, Uttar Pradesh, India'
           },
           skills: {
             languages: (Array.isArray(apiData.skills?.languages) && apiData.skills.languages.length > 0)
@@ -166,8 +175,10 @@ const usePortfolioData = () => {
             ? apiData.workshops
             : (Array.isArray(fallbackData.workshops) ? fallbackData.workshops : []),
           contact: {
-            email: apiData.contact?.email || fallbackData.contact?.email || 'contact@example.com',
-            phone: apiData.contact?.phone || fallbackData.contact?.phone || '+1 (555) 000-0000'
+            name: apiData.contact?.name || fallbackData.contact?.name || apiData.name || fallbackData.name || 'Yashika Sapra',
+            email: apiData.contact?.email || apiData.social?.email || fallbackData.contact?.email || fallbackData.social?.email || 'yashika2865@gmail.com',
+            phone: apiData.contact?.phone || apiData.social?.phone || fallbackData.contact?.phone || fallbackData.social?.phone || '6396951934',
+            address: apiData.contact?.address || apiData.social?.address || fallbackData.contact?.address || fallbackData.social?.address || 'Mathura, Uttar Pradesh, India'
           },
           videoResume: apiData.videoResume || null
         };

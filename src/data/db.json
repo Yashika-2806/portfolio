@@ -308,6 +308,14 @@
         "linkedin": "https://www.linkedin.com/in/yashika-sapra-71a684292/",
         "leetcode": "https://leetcode.com/",
         "email": "yashika2865@gmail.com",
-        "phone": "6396951934"
+        "phone": "6396951934",
+        "address": "Mathura, Uttar Pradesh, India"
+    },
+    "contact": {
+        "name": "Yashika Sapra",
+        "email": "yashika2865@gmail.com",
+        "phone": "6396951934",
+        "address": "Mathura, Uttar Pradesh, India",
+        "description": "Get in touch for collaborations, internships, projects, or professional inquiries."
     }
 }

@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
 
-const Contact = ({ contact, social }) => {
+const Contact = ({ contact, social, name }) => {
     // Ensure contact has default values
     const safeContact = {
-        email: contact?.email || 'contact@example.com',
-        phone: contact?.phone || '+1 (555) 000-0000',
-        address: contact?.address || 'Location not specified',
+        name: contact?.name || name || 'Yashika Sapra',
+        email: contact?.email || social?.email || 'yashika2865@gmail.com',
+        phone: contact?.phone || social?.phone || '6396951934',
+        address: contact?.address || social?.address || 'Mathura, Uttar Pradesh, India',
         description: contact?.description || 'Get in touch for collaborations or inquiries.'
     };
 
     // Ensure social has default values
     const safeSocial = {
-        whatsapp: social?.whatsapp || '#',
+        whatsapp: social?.whatsapp || `https://wa.me/91${safeContact.phone.replace(/[^0-9]/g, "")}`,
         linkedin: social?.linkedin || '#',
         github: social?.github || '#',
         twitter: social?.twitter || '#',
@@ -30,7 +31,8 @@ const Contact = ({ contact, social }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { name, email, message } = formData;
-        const phone = safeContact.phone.replace(/[^0-9]/g, "");
+        const rawPhone = safeContact.phone.replace(/[^0-9]/g, "");
+        const phone = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone;
         const text = `Hello, my name is ${name}.\nMy email is ${email}.\n\nMessage: ${message}`;
         const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
         window.open(whatsappUrl, "_blank");
@@ -53,7 +55,7 @@ const Contact = ({ contact, social }) => {
                     viewport={{ once: true }}
                     className="text-center mb-14 md:mb-20"
                 >
-                    <SectionTitle title="Get In Touch" />
+                    <SectionTitle>Get In Touch</SectionTitle>
                 </motion.div>
 
                 <div className="mt-12 md:mt-20 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
@@ -66,18 +68,20 @@ const Contact = ({ contact, social }) => {
                     >
                         <div>
                             <h3 className="text-2xl font-bold text-white mb-2">Get in Touch</h3>
+                            <p className="text-xl font-semibold text-[var(--neon-cyan)] mb-2">{safeContact.name}</p>
                             <p className="text-lg text-[#a4bbeb]">{safeContact.description}</p>
                         </div>
                         <div className="space-y-6">
-                            <InfoItem icon="fa-envelope" text={safeContact.email} href={`mailto:${safeContact.email}`} />
-                            <InfoItem icon="fa-phone" text={safeContact.phone} href={`tel:${safeContact.phone}`} />
-                            <InfoItem icon="fa-map-marker-alt" text={safeContact.address} />
+                            <InfoItem icon={FaEnvelope} text={safeContact.email} href={`mailto:${safeContact.email}`} />
+                            <InfoItem icon={FaPhoneAlt} text={safeContact.phone} href={`tel:${safeContact.phone}`} />
+                            <InfoItem icon={FaMapMarkerAlt} text={safeContact.address} />
                         </div>
                         <div className="flex space-x-5 pt-4">
-                            <SocialLink href={safeSocial.linkedin} icon="fa-linkedin" />
-                            <SocialLink href={safeSocial.github} icon="fa-github" />
-                            <SocialLink href={safeSocial.twitter} icon="fa-twitter" />
-                            <SocialLink href={safeSocial.instagram} icon="fa-instagram" />
+                            <SocialLink href={safeSocial.linkedin} icon={FaLinkedin} label="LinkedIn" />
+                            <SocialLink href={safeSocial.github} icon={FaGithub} label="GitHub" />
+                            <SocialLink href={safeSocial.whatsapp} icon={FaWhatsapp} label="WhatsApp" />
+                            <SocialLink href={safeSocial.twitter} icon={FaTwitter} label="Twitter" />
+                            <SocialLink href={safeSocial.instagram} icon={FaInstagram} label="Instagram" />
                         </div>
                     </motion.div>
 
@@ -143,10 +147,10 @@ const Contact = ({ contact, social }) => {
     );
 };
 
-const InfoItem = ({ icon, text, href }) => (
+const InfoItem = ({ icon: Icon, text, href }) => (
     <div className="flex items-center gap-4 text-lg">
         <div className="w-10 h-10 flex-shrink-0 rounded-full bg-[#10203a] border border-[#263c68] flex items-center justify-center">
-            <i className={`fa-solid ${icon} text-[var(--neon-cyan)]`}></i>
+            <Icon className="text-[var(--neon-cyan)]" />
         </div>
         {href ? (
             <a href={href} className="text-[#a4bbeb] hover:text-white transition-colors">{text}</a>
@@ -156,15 +160,18 @@ const InfoItem = ({ icon, text, href }) => (
     </div>
 );
 
-const SocialLink = ({ href, icon }) => (
+const SocialLink = ({ href, icon: Icon, label }) => (
+    href && href !== '#' ? (
     <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={label}
         className="w-12 h-12 rounded-full bg-[#10203a] border border-[#263c68] flex items-center justify-center text-xl text-[#a4bbeb] hover:text-[var(--neon-cyan)] hover:border-[var(--neon-cyan)]/50 transition-all"
     >
-        <i className={`fab ${icon}`}></i>
+        <Icon />
     </a>
+    ) : null
 );
 
 export default Contact;
