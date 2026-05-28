@@ -3,13 +3,20 @@ import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 
 const Workshops = ({ workshops }) => {
+    // Ensure workshops is always an array
+    const safeWorkshops = Array.isArray(workshops) ? workshops : [];
+
     return (
         <section id="workshops" className="section-shell">
             <SectionTitle>Workshops & Seminars</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {workshops && workshops.length > 0 ? workshops.map((item, index) => (
+                {safeWorkshops.length > 0 ? safeWorkshops.map((item, index) => (
                     <WorkshopCard key={index} item={item} />
-                )) : null}
+                )) : (
+                    <div className="col-span-full text-center py-12">
+                        <p className="text-[#9ab0df] text-lg">No workshops found</p>
+                    </div>
+                )}
             </div>
         </section>
     );

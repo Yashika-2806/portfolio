@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaAward, FaExternalLinkAlt } from "react-icons/fa";
+import SectionTitle from "../components/SectionTitle";
 import * as pdfjsLib from "pdfjs-dist/build/pdf.mjs";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
@@ -112,27 +113,38 @@ const CertificatePreview = ({ src, alt }) => {
 };
 
 const Certifications = ({ certifications }) => {
+    // Ensure certifications is always an array
+    const safeCertifications = Array.isArray(certifications) ? certifications : [];
+
     return (
         <section id="certifications" className="section-shell">
             <SectionTitle>Certifications & Credentials</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {certifications && certifications.length > 0 ? certifications.map((cert, index) => (
-                    <CertificationCard key={index} cert={cert} />
-                )) : null}
+                {safeCertifications.length > 0 ? safeCertifications.map((cert, index) => (
+                    <CertificationCard key={index} cert={cert} index={index} />
+                )) : (
+                    <p className="col-span-full text-center text-[#9ab0df] py-12">No certifications found</p>
+                )}
             </div>
         </section>
     );
 };
 
-const CertificationCard = ({ cert }) => {
+const CertificationCard = ({ cert, index }) => {
     const [currentImage, setCurrentImage] = useState(0);
+    // Ensure cert.images is always an array
+    const images = Array.isArray(cert?.images) ? cert.images : [];
 
     const nextImage = () => {
-        setCurrentImage((prev) => (prev + 1) % cert.images.length);
+        if (images.length > 0) {
+            setCurrentImage((prev) => (prev + 1) % images.length);
+        }
     };
 
     const prevImage = () => {
-        setCurrentImage((prev) => (prev - 1 + cert.images.length) % cert.images.length);
+        if (images.length > 0) {
+            setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+        }
     };
 
     return (

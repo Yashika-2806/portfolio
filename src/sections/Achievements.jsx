@@ -4,23 +4,29 @@ import { FaChevronLeft, FaChevronRight, FaTrophy } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
 
 const Achievements = ({ achievements }) => {
+    // Ensure achievements is always an array
+    const safeAchievements = Array.isArray(achievements) ? achievements : [];
+
     return (
         <section id="achievements" className="section-shell">
             <SectionTitle>Awards & Achievements</SectionTitle>
             <div className="mt-12 md:mt-20 max-w-4xl mx-auto">
                 <div className="relative border-l-2 border-[var(--line)] pl-8 space-y-12">
-                    {achievements && achievements.length > 0 ? achievements.map((item, index) => (
-                        <AchievementItem key={index} item={item} />
-                    )) : null}
+                    {safeAchievements.length > 0 ? safeAchievements.map((item, index) => (
+                        <AchievementItem key={index} item={item} index={index} />
+                    )) : (
+                        <p className="text-[#9ab0df] text-center py-12">No achievements found</p>
+                    )}
                 </div>
             </div>
         </section>
     );
 };
 
-const AchievementItem = ({ item }) => {
+const AchievementItem = ({ item, index }) => {
     const [currentImage, setCurrentImage] = useState(0);
-    const images = (item && item.images) || [];
+    // Ensure images is always an array
+    const images = Array.isArray(item?.images) ? item.images : [];
 
     const nextImage = (e) => {
         e.stopPropagation();

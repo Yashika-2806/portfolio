@@ -2,11 +2,20 @@ import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 
 const Skills = ({ skills }) => {
+    // Ensure skills is always an object with safe defaults
+    const safeSkills = (skills && typeof skills === 'object' && Object.keys(skills).length > 0) ? skills : {
+        languages: [],
+        frontend: [],
+        backend: [],
+        ai_ml: [],
+        tools: []
+    };
+
     return (
         <section id="skills" className="section-shell">
             <SectionTitle>Skills & Expertise</SectionTitle>
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {skills && typeof skills === 'object' && Object.keys(skills).length > 0 ? Object.entries(skills).map(([key, categorySkills], index) => (
+                {Object.keys(safeSkills).length > 0 ? Object.entries(safeSkills).map(([key, categorySkills], index) => (
                     <SkillCategory
                         key={index}
                         category={key}
@@ -14,13 +23,20 @@ const Skills = ({ skills }) => {
                         icon={null}
                         index={index}
                     />
-                )) : null}
+                )) : (
+                    <div className="col-span-full text-center py-12">
+                        <p className="text-[#9ab0df] text-lg">No skills found</p>
+                    </div>
+                )}
             </div>
         </section>
     );
 };
 
 const SkillCategory = ({ category, skills, icon, index }) => {
+    // Ensure skills is always an array
+    const safeSkills = Array.isArray(skills) ? skills : [];
+    
     // Map skills to their use cases
     const skillUseCases = {
         // Languages
@@ -70,14 +86,16 @@ const SkillCategory = ({ category, skills, icon, index }) => {
                 <h3 className="text-2xl font-bold text-white">{category}</h3>
             </div>
             <div className="flex flex-wrap gap-3">
-                {skills && Array.isArray(skills) && skills.length > 0 ? skills.map((skill, index) => (
+                {safeSkills.length > 0 ? safeSkills.map((skill, index) => (
                     <span
                         key={index}
                         className="bg-[#10203a] text-[#96b2e9] text-sm font-semibold px-4 py-2 rounded-full border border-[#263c68] hover:border-[var(--neon-cyan)]/50 hover:text-white transition-all cursor-default"
                     >
                         {skill.name || skill}
                     </span>
-                )) : null}
+                )) : (
+                    <p className="text-[#9ab0df] text-sm">No skills in this category</p>
+                )}
             </div>
         </motion.div>
     );
