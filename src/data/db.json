@@ -232,6 +232,86 @@
             "image": "/images/agentic ai workshop certificate.png"
         }
     ],
+    "achievements": [
+        {
+            "icon": "🏆",
+            "date": "Jan 2025",
+            "title": "Agentic AI Workshop Winner",
+            "description": "Built and deployed autonomous multi-agent system for job automation that handles 100+ applications daily",
+            "rotate": true,
+            "images": ["/images/achievement1.jpg"]
+        },
+        {
+            "icon": "🥇",
+            "date": "Dec 2024",
+            "title": "Hackathon Champion - AI Track",
+            "description": "First place in national hackathon for innovative multi-agent orchestration system",
+            "rotate": false,
+            "images": ["/images/achievement2.jpg"]
+        },
+        {
+            "icon": "⭐",
+            "date": "Nov 2024",
+            "title": "Best AI Project Award",
+            "description": "Recognition for building production-grade AI infrastructure handling 1000+ events per second",
+            "rotate": true,
+            "images": ["/images/achievement3.jpg"]
+        },
+        {
+            "icon": "🎯",
+            "date": "Oct 2024",
+            "title": "Technical Innovation Prize",
+            "description": "Developed IoT network architecture with real-time data processing capabilities",
+            "rotate": false,
+            "images": ["/images/achievement4.jpg"]
+        },
+        {
+            "icon": "🚀",
+            "date": "Sep 2024",
+            "title": "Campus Ambassador - AI & ML",
+            "description": "Leading AI/ML initiatives and mentoring 50+ students in advanced system design",
+            "rotate": true,
+            "images": ["/images/achievement5.jpg"]
+        }
+    ],
+    "workshops": [
+        {
+            "date": "Jan 2025",
+            "title": "Building Autonomous AI Agents at Scale",
+            "description": "Comprehensive workshop on multi-agent architecture, tool integration patterns, and production deployment strategies",
+            "role": "Instructor"
+        },
+        {
+            "date": "Dec 2024",
+            "title": "Full-Stack ML Systems Design",
+            "description": "End-to-end training on building ML pipelines from data engineering to model serving with monitoring",
+            "role": "Co-Facilitator"
+        },
+        {
+            "date": "Nov 2024",
+            "title": "IoT & Real-Time Systems Workshop",
+            "description": "Hands-on session on sensor networks, real-time data processing, and embedded systems optimization",
+            "role": "Lead Instructor"
+        },
+        {
+            "date": "Oct 2024",
+            "title": "LLM Integration & Prompt Engineering",
+            "description": "Practical guide to integrating large language models into production applications with cost optimization",
+            "role": "Instructor"
+        },
+        {
+            "date": "Sep 2024",
+            "title": "DevOps & Cloud Infrastructure",
+            "description": "Deep dive into Docker, Kubernetes, CI/CD pipelines, and cloud deployment best practices",
+            "role": "Co-Facilitator"
+        },
+        {
+            "date": "Aug 2024",
+            "title": "Database Design & Optimization",
+            "description": "Advanced SQL techniques, indexing strategies, and query optimization for high-performance systems",
+            "role": "Instructor"
+        }
+    ],
     "social": {
         "github": "https://github.com/Yashika-2806",
         "linkedin": "https://www.linkedin.com/in/yashika-sapra-71a684292/",
