@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { Link } from "react-scroll";
-import { FaGithub, FaLinkedin, FaMedium, FaFileDownload, FaChevronDown, FaCode, FaRobot, FaDatabase } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMedium, FaEye, FaChevronDown, FaCode, FaRobot, FaDatabase } from "react-icons/fa";
 
 const Hero = ({ hero }) => {
     // Ensure hero has safe defaults
@@ -75,7 +75,7 @@ const Hero = ({ hero }) => {
                             rel="noopener noreferrer"
                             className="btn-primary"
                         >
-                            <FaFileDownload />
+                            <FaEye />
                             <span>Resume</span>
                         </a>
                         <Link
