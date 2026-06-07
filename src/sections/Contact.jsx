@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
 
 const Contact = ({ contact, social, name }) => {
@@ -15,7 +15,6 @@ const Contact = ({ contact, social, name }) => {
 
     // Ensure social has default values
     const safeSocial = {
-        whatsapp: social?.whatsapp || `https://wa.me/91${safeContact.phone.replace(/[^0-9]/g, "")}`,
         linkedin: social?.linkedin || '#',
         github: social?.github || '#',
         twitter: social?.twitter || '#',
@@ -31,11 +30,10 @@ const Contact = ({ contact, social, name }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { name, email, message } = formData;
-        const rawPhone = safeContact.phone.replace(/[^0-9]/g, "");
-        const phone = rawPhone.length === 10 ? `91${rawPhone}` : rawPhone;
-        const text = `Hello, my name is ${name}.\nMy email is ${email}.\n\nMessage: ${message}`;
-        const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-        window.open(whatsappUrl, "_blank");
+        const subject = `Portfolio inquiry from ${name}`;
+        const body = `Hello ${safeContact.name},%0D%0A%0D%0AMy name is ${name}.%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}%0D%0A%0D%0AThank you.`;
+        const mailtoUrl = `mailto:${safeContact.email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        window.location.href = mailtoUrl;
         setFormData({ name: "", email: "", message: "" });
     };
 
@@ -79,7 +77,6 @@ const Contact = ({ contact, social, name }) => {
                         <div className="flex space-x-5 pt-4">
                             <SocialLink href={safeSocial.linkedin} icon={FaLinkedin} label="LinkedIn" />
                             <SocialLink href={safeSocial.github} icon={FaGithub} label="GitHub" />
-                            <SocialLink href={safeSocial.whatsapp} icon={FaWhatsapp} label="WhatsApp" />
                             <SocialLink href={safeSocial.twitter} icon={FaTwitter} label="Twitter" />
                             <SocialLink href={safeSocial.instagram} icon={FaInstagram} label="Instagram" />
                         </div>

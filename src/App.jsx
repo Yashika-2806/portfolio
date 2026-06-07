@@ -9,7 +9,6 @@ import Certifications from "./sections/Certifications";
 import Achievements from "./sections/Achievements";
 import Workshops from "./sections/Workshops";
 import Contact from "./sections/Contact";
-import Footer from "./components/Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { FaHeart } from "react-icons/fa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -89,12 +88,6 @@ function MainLayout() {
         <Workshops workshops={workshops} />
         <Contact contact={contact} social={social} name={name} />
       </main>
-      <footer className="text-center py-8 text-[#7f96c7] border-t border-[var(--line)]">
-        <p>&copy; {new Date().getFullYear()} {name}. All rights reserved.</p>
-        <p className="flex items-center justify-center gap-2 mt-2">
-          Made with <FaHeart className="text-red-500" /> in India
-        </p>
-      </footer>
     </div>
   );
 }
