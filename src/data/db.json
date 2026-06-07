@@ -204,12 +204,18 @@
         {
             "date": "2025",
             "title": "Incept at GLA University",
-            "description": "🚀 Hands-on Experience in Generative AI & Agentic AI\nRecently, I had the opportunity to attend an intensive workshop on Generative AI and Agentic AI, and it turned out to be a highly practical and insightful experience.\n🔹 What I explored during the workshop:\n🧠 Fundamentals of Generative AI models and how they work in real-world applications\n🤖 Concepts of Agentic AI — building systems that can think, decide, and act autonomously\n🛠️ Hands-on experience with multiple tools, libraries, and AI frameworks\n⚙️ Built and experimented with AI agents and generative models\n🔗 Learned how to integrate AI into workflows for solving real problems\n🔹 Key Takeaways:\nUnderstanding how to move from static AI models → intelligent agents\nImportance of structured prompts, context handling, and orchestration\nPractical exposure to building end-to-end AI-powered solutions\nA big thank you to Tarang Nigam Sir for conducting such an engaging and knowledge-packed workshop. The way complex concepts were broken down into practical implementations made it extremely valuable.\n💡 This experience has strengthened my interest in building AI-driven systems and autonomous solutions.",
+            "description": "Attended an enriching session organized by Google Developers Group GLA University on real-world tech careers, project impact, and problem-solving with speakers from industry.",
             "role": "Participant",
             "images": [
                 "/images/workshop_google developer group.jpg",
                 "/images/workshop_google developer group1.jpg"
             ]
+        },
+        {
+            "date": "2025",
+            "title": "Generative AI & Agentic AI Workshop",
+            "description": "🚀 Hands-on Experience in Generative AI & Agentic AI\nRecently, I had the opportunity to attend an intensive workshop on Generative AI and Agentic AI, and it turned out to be a highly practical and insightful experience.\n🔹 What I explored during the workshop:\n🧠 Fundamentals of Generative AI models and how they work in real-world applications\n🤖 Concepts of Agentic AI — building systems that can think, decide, and act autonomously\n🛠️ Hands-on experience with multiple tools, libraries, and AI frameworks\n⚙️ Built and experimented with AI agents and generative models\n🔗 Learned how to integrate AI into workflows for solving real problems\n🔹 Key Takeaways:\nUnderstanding how to move from static AI models → intelligent agents\nImportance of structured prompts, context handling, and orchestration\nPractical exposure to building end-to-end AI-powered solutions\nA big thank you to Tarang Nigam Sir for conducting such an engaging and knowledge-packed workshop. The way complex concepts were broken down into practical implementations made it extremely valuable.\n💡 This experience has strengthened my interest in building AI-driven systems and autonomous solutions.",
+            "role": "Participant"
         },
         {
             "date": "Jan 2025",
@@ -320,7 +326,32 @@
             "description": "Won against 50+ teams with innovative B2B automation product. Focused on problem clarity + execution roadmap. Prize: ₹50K + incubation mentorship.",
             "date": "2024",
             "images": [
-                "/images/Shark tank1.jpeg"
+                "/images/Shark tank1.jpeg",
+                "/images/Shark tank2.jpeg"
+            ]
+        },
+        {
+            "title": "🏆 Smart City Hackathon - Top Finalist",
+            "description": "Competed in a city-level hackathon to build a civic-tech solution. Delivered a working prototype for improving urban services and placed among the top finalists.",
+            "date": "2024",
+            "images": [
+                "/images/hackathon_smart_city1.jpeg"
+            ]
+        },
+        {
+            "title": "🚀 AI Innovation Hackathon",
+            "description": "Participated in an intensive hackathon focused on AI-driven automation solutions. Collaborated with a cross-functional team to design and demo an intelligent workflow assistant.",
+            "date": "2024",
+            "images": [
+                "/images/ai_innovation_hackathon1.jpeg"
+            ]
+        },
+        {
+            "title": "🎙️ Youth Parliament Achievement",
+            "description": "Represented the student body in Youth Parliament. Presented ideas on leadership, social impact, and policy, earning recognition for effective communication and advocacy.",
+            "date": "2024",
+            "images": [
+                "/images/youth_parliament1.jpeg"
             ]
         },
         {
