@@ -46,9 +46,9 @@ const WorkshopCard = ({ item }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="panel overflow-hidden rounded-2xl"
+            className="panel overflow-hidden rounded-2xl min-h-[38rem]"
         >
-            <div className="relative h-72 overflow-hidden bg-[#03070f] flex items-center justify-center">
+            <div className="relative h-96 md:h-[28rem] overflow-hidden bg-[#03070f] flex items-center justify-center">
                 {activeImage ? (
                     <img
                         src={activeImage}

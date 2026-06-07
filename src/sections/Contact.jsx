@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
@@ -26,6 +26,14 @@ const Contact = ({ contact, social, name }) => {
         email: "",
         message: ""
     });
+    const messageRef = useRef(null);
+
+    const handleConnectClick = () => {
+        if (messageRef.current) {
+            messageRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            messageRef.current.focus();
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,6 +62,13 @@ const Contact = ({ contact, social, name }) => {
                     className="text-center mb-14 md:mb-20"
                 >
                     <SectionTitle>Get In Touch</SectionTitle>
+                    <button
+                        type="button"
+                        onClick={handleConnectClick}
+                        className="mt-6 inline-flex items-center justify-center rounded-full bg-[var(--neon-cyan)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-[#020617] shadow-[0_0_20px_rgba(56,246,255,0.25)] transition hover:scale-[1.02]"
+                    >
+                        Connect
+                    </button>
                 </motion.div>
 
                 <div className="mt-12 md:mt-20 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
@@ -122,6 +137,7 @@ const Contact = ({ contact, social, name }) => {
                             <div className="space-y-3">
                                 <label htmlFor="message" className="text-base font-bold text-[#bdd4ff] uppercase tracking-wider">Message</label>
                                 <textarea
+                                    ref={messageRef}
                                     name="message"
                                     id="message"
                                     rows="5"
