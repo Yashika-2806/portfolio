@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 
@@ -22,14 +22,24 @@ const Workshops = ({ workshops }) => {
     );
 };
 
+import { useState } from "react";
+
 const WorkshopCard = ({ item }) => {
-    // Ensure item has safe defaults
+    const images = Array.isArray(item?.images)
+        ? item.images.filter(Boolean)
+        : item?.image
+            ? [item.image]
+            : [];
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const activeImage = images[currentImageIndex] || '';
+    const showNextButton = images.length === 2;
+
     const safeItem = {
         date: item?.date || 'Date',
         title: item?.title || 'Workshop',
         description: item?.description || 'No description',
-        role: item?.role || 'Participant',
-        image: item?.image || ''
+        role: item?.role || 'Participant'
     };
 
     return (
@@ -40,15 +50,30 @@ const WorkshopCard = ({ item }) => {
             viewport={{ once: true, amount: 0.3 }}
             className="panel overflow-hidden rounded-2xl"
         >
-            {safeItem.image && (
-                <div className="relative h-72 overflow-hidden bg-[#03070f]">
+            <div className="relative h-72 overflow-hidden bg-[#03070f] flex items-center justify-center">
+                {activeImage ? (
                     <img
-                        src={safeItem.image}
+                        src={activeImage}
                         alt={safeItem.title}
                         className="w-full h-full object-cover"
                     />
-                </div>
-            )}
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[#081727] text-[#7ee9ff] text-sm uppercase tracking-[0.24em]">
+                        Workshop Image Placeholder
+                    </div>
+                )}
+
+                {showNextButton && (
+                    <button
+                        type="button"
+                        onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
+                        className="absolute right-4 bottom-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-[var(--neon-cyan)] text-[#020617] shadow-lg transition hover:scale-105"
+                        aria-label="Next workshop image"
+                    >
+                        &gt;
+                    </button>
+                )}
+            </div>
             <div className="p-6 md:p-8 flex flex-col h-full">
                 <div className="flex-grow">
                     <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{safeItem.date}</p>

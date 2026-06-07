@@ -205,25 +205,39 @@
             "date": "2025",
             "title": "Incept at GLA University",
             "description": "Attended an enriching session organized by Google Developers Group GLA University on real-world tech careers, project impact, and problem-solving with speakers from industry.",
-            "role": "Participant"
+            "role": "Participant",
+            "images": [
+                "/images/workshop_google developer group.jpg",
+                "/images/workshop_google developer group1.jpg"
+            ]
         },
         {
             "date": "Jan 2025",
             "title": "Agentic AI Startup Workshop",
             "description": "Participated in a hands-on workshop on autonomous AI systems, startup ideation, and founder thinking organized by E-Cell GLAU.",
-            "role": "Participant"
+            "role": "Participant",
+            "images": [
+                "/images/workshop_agentic ai.png"
+            ]
         },
         {
             "date": "2025",
             "title": "Annual Leadership Summit",
             "description": "Joined industry leaders and HR experts for sessions on the future of jobs, generative AI, and leadership trends at GLA University.",
-            "role": "Attendee"
+            "role": "Attendee",
+            "images": [
+                "/images/worksop_annual leadership summit1.jpg",
+                "/images/worksop_annual leadership summit2.jpg"
+            ]
         },
         {
             "date": "2025",
             "title": "Guest Lecture by Jitendra Sharma",
             "description": "Attended an entrepreneurship and innovation lecture by Jitendra Sharma, founder and CEO of Hair Originals, hosted by the CSED department.",
-            "role": "Attendee"
+            "role": "Attendee",
+            "images": [
+                "/images/workshop_jitendra sharma.jpg"
+            ]
         }
     ],
     "certifications": [
@@ -266,14 +280,6 @@
             "learned": "Advanced SQL, indexing strategies, query optimization",
             "applied": "Designed PostgreSQL schema for analytics platform. Achieved sub-second queries.",
             "image": "/images/ecertificate oracle.pdf"
-        },
-        {
-            "title": "Agentic AI Workshop",
-            "issuer": "Workshop",
-            "date": "Jan 2025",
-            "learned": "Autonomous system design, reliability patterns at scale",
-            "applied": "Direct application to Nirmaan multi-agent orchestration.",
-            "image": "/images/agentic ai workshop certificate.png"
         },
         {
             "title": "Introduction to Artificial Intelligence",

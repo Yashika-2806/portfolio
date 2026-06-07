@@ -132,14 +132,6 @@ export const user = {
             learned: "Advanced SQL, indexing strategies, query optimization",
             applied: "Designed PostgreSQL schema for analytics platform. Achieved sub-second queries.",
             image: "/images/ecertificate oracle.pdf"
-        },
-        {
-            title: "Agentic AI Workshop",
-            issuer: "Workshop",
-            date: "Jan 2025",
-            learned: "Autonomous system design, reliability patterns at scale",
-            applied: "Direct application to Nirmaan multi-agent orchestration.",
-            image: "/images/agentic ai workshop certificate.png"
         }
     ],
     social: {
