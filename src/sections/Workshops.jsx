@@ -22,8 +22,6 @@ const Workshops = ({ workshops }) => {
     );
 };
 
-import { useState } from "react";
-
 const WorkshopCard = ({ item }) => {
     const images = Array.isArray(item?.images)
         ? item.images.filter(Boolean)
