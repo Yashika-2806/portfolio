@@ -11,7 +11,7 @@ const Projects = ({ projects }) => {
     return (
         <section id="projects" className="section-shell">
             <SectionTitle>Featured Projects</SectionTitle>
-            <div className="mt-12 md:mt-20 max-w-[90rem] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="mt-12 md:mt-20 max-w-[112rem] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
                 {safeProjects.length > 0 ? safeProjects.map((project, index) => (
                     <ProjectCard
                         key={index}
@@ -51,7 +51,7 @@ const ProjectCard = ({ project, onView }) => {
             viewport={{ once: true, amount: 0.3 }}
             className="panel rounded-2xl overflow-hidden group"
         >
-            <div className="relative h-96 md:h-[28rem] overflow-hidden bg-[#03070f]">
+            <div className="relative w-full h-[24rem] md:h-[31rem] overflow-hidden bg-[#03070f]">
                 <img
                     src={safeProject.imageUrl}
                     alt={safeProject.title}
