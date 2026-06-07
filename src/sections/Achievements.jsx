@@ -59,7 +59,7 @@ const AchievementItem = ({ item, index }) => {
         >
             <div>
                 {/* Image Section */}
-                <div className="relative w-full h-[24rem] md:h-[28rem] overflow-hidden bg-[#03070f] group/slider">
+                <div className="relative w-full min-h-[28rem] md:min-h-[34rem] overflow-hidden bg-[#03070f] group/slider flex items-center justify-center">
                     {images.length > 0 ? (
                         <>
                             <AnimatePresence mode="wait">
@@ -67,11 +67,11 @@ const AchievementItem = ({ item, index }) => {
                                     key={currentImage}
                                     src={images[currentImage]}
                                     alt={`${safeItem.title} - ${currentImage + 1}`}
-                                    initial={{ opacity: 0, scale: 1.05 }}
+                                    initial={{ opacity: 0, scale: 1.03 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5 }}
-                                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${safeItem.rotate ? 'rotate-90' : ''}`}
+                                    className={`max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.02] ${safeItem.rotate ? 'rotate-90' : ''}`}
                                 />
                             </AnimatePresence>
 
