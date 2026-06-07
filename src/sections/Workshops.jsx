@@ -8,12 +8,13 @@ const Workshops = ({ workshops }) => {
 
     return (
         <section id="workshops" className="section-shell">
-            <SectionTitle>Workshops & Seminars</SectionTitle>
-            <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {safeWorkshops.length > 0 ? safeWorkshops.map((item, index) => (
-                    <WorkshopCard key={index} item={item} />
-                )) : (
-                    <div className="col-span-full text-center py-12">
+            <div className="mt-12 md:mt-20 max-w-[88rem] mx-auto px-4 sm:px-6">
+                <SectionTitle>Workshops & Seminars</SectionTitle>
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {safeWorkshops.length > 0 ? safeWorkshops.map((item, index) => (
+                        <WorkshopCard key={index} item={item} />
+                    )) : (
+                        <div className="col-span-full text-center py-12">
                         <p className="text-[#9ab0df] text-lg">No workshops found</p>
                     </div>
                 )}
@@ -46,14 +47,14 @@ const WorkshopCard = ({ item }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="panel overflow-hidden rounded-2xl min-h-[38rem]"
+            className="panel overflow-hidden rounded-2xl min-h-[44rem]"
         >
-            <div className="relative h-96 md:h-[28rem] overflow-hidden bg-[#03070f] flex items-center justify-center">
+            <div className="relative h-[32rem] overflow-hidden bg-[#03070f] flex items-center justify-center p-4">
                 {activeImage ? (
                     <img
                         src={activeImage}
                         alt={safeItem.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#081727] text-[#7ee9ff] text-sm uppercase tracking-[0.24em]">
@@ -76,7 +77,7 @@ const WorkshopCard = ({ item }) => {
                 <div className="flex-grow">
                     <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{safeItem.date}</p>
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{safeItem.title}</h3>
-                    <p className="text-base text-[#9ab0df] mb-4">{safeItem.description}</p>
+                    <p className="text-base text-[#9ab0df] mb-4 whitespace-pre-line">{safeItem.description}</p>
                 </div>
                 <div className="mt-auto pt-4 border-t border-[var(--line)]">
                     <p className="text-sm text-[#9ab0df]">
