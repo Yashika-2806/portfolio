@@ -19,6 +19,7 @@ const Workshops = ({ workshops }) => {
                     </div>
                 )}
             </div>
+        </div>
         </section>
     );
 };
