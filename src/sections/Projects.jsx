@@ -11,7 +11,7 @@ const Projects = ({ projects }) => {
     return (
         <section id="projects" className="section-shell">
             <SectionTitle>Featured Projects</SectionTitle>
-            <div className="mt-12 md:mt-20 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="mt-12 md:mt-20 max-w-[90rem] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
                 {safeProjects.length > 0 ? safeProjects.map((project, index) => (
                     <ProjectCard
                         key={index}
@@ -51,11 +51,11 @@ const ProjectCard = ({ project, onView }) => {
             viewport={{ once: true, amount: 0.3 }}
             className="panel rounded-2xl overflow-hidden group"
         >
-            <div className="relative aspect-video overflow-hidden bg-[#03070f]">
+            <div className="relative h-96 md:h-[28rem] overflow-hidden bg-[#03070f]">
                 <img
                     src={safeProject.imageUrl}
                     alt={safeProject.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent" />
             </div>
