@@ -147,6 +147,20 @@ const Admin = () => {
                     <button type="button" onClick={() => addItem('certifications')} className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Certification</button>
                 </Section>
 
+                {/* Workshops */}
+                <Section title="Workshops">
+                    <p className="text-sm text-gray-400 mb-4">For workshop images, place files in `/public/images/` and enter the path here (e.g., `/images/workshop-1.png`).</p>
+                    {safeArray(data.workshops).map((item, index) => (
+                        <ItemCard key={index} onRemove={() => removeItem('workshops', index)}>
+                            <InputField placeholder="Title" value={item.title} onChange={(e) => handleInputChange(e, 'workshops', index, 'title')} />
+                            <InputField placeholder="Date" value={item.date} onChange={(e) => handleInputChange(e, 'workshops', index, 'date')} />
+                            <TextareaField placeholder="Description" value={item.description} onChange={(e) => handleInputChange(e, 'workshops', index, 'description')} />
+                            <InputField placeholder="Image Path" value={item.image} onChange={(e) => handleInputChange(e, 'workshops', index, 'image')} />
+                        </ItemCard>
+                    ))}
+                    <button type="button" onClick={() => addItem('workshops')} className="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700">Add Workshop</button>
+                </Section>
+
                 {/* Education */}
                 <Section title="Education">
                     {safeArray(data.education).map((item, index) => (

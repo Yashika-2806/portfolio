@@ -200,6 +200,32 @@
             "details": "Specialization: Artificial Intelligence, Machine Learning & IoT"
         }
     ],
+    "workshops": [
+        {
+            "date": "2025",
+            "title": "Incept at GLA University",
+            "description": "Attended an enriching session organized by Google Developers Group GLA University on real-world tech careers, project impact, and problem-solving with speakers from industry.",
+            "role": "Participant"
+        },
+        {
+            "date": "Jan 2025",
+            "title": "Agentic AI Startup Workshop",
+            "description": "Participated in a hands-on workshop on autonomous AI systems, startup ideation, and founder thinking organized by E-Cell GLAU.",
+            "role": "Participant"
+        },
+        {
+            "date": "2025",
+            "title": "Annual Leadership Summit",
+            "description": "Joined industry leaders and HR experts for sessions on the future of jobs, generative AI, and leadership trends at GLA University.",
+            "role": "Attendee"
+        },
+        {
+            "date": "2025",
+            "title": "Guest Lecture by Jitendra Sharma",
+            "description": "Attended an entrepreneurship and innovation lecture by Jitendra Sharma, founder and CEO of Hair Originals, hosted by the CSED department.",
+            "role": "Attendee"
+        }
+    ],
     "certifications": [
         {
             "title": "Fundamentals of Building AI Agents",

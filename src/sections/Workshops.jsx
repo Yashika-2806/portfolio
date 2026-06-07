@@ -28,7 +28,8 @@ const WorkshopCard = ({ item }) => {
         date: item?.date || 'Date',
         title: item?.title || 'Workshop',
         description: item?.description || 'No description',
-        role: item?.role || 'Participant'
+        role: item?.role || 'Participant',
+        image: item?.image || ''
     };
 
     return (
@@ -37,17 +38,28 @@ const WorkshopCard = ({ item }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="panel p-6 md:p-8 rounded-2xl flex flex-col"
+            className="panel overflow-hidden rounded-2xl"
         >
-            <div className="flex-grow">
-                <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{safeItem.date}</p>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{safeItem.title}</h3>
-                <p className="text-base text-[#9ab0df] mb-4">{safeItem.description}</p>
-            </div>
-            <div className="mt-auto pt-4 border-t border-[var(--line)]">
-                <p className="text-sm text-[#9ab0df]">
-                    <span className="font-semibold text-[#7ee9ff]">Role:</span> {safeItem.role}
-                </p>
+            {safeItem.image && (
+                <div className="relative h-72 overflow-hidden bg-[#03070f]">
+                    <img
+                        src={safeItem.image}
+                        alt={safeItem.title}
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            )}
+            <div className="p-6 md:p-8 flex flex-col h-full">
+                <div className="flex-grow">
+                    <p className="text-sm text-[#7ee9ff] font-semibold mb-2">{safeItem.date}</p>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{safeItem.title}</h3>
+                    <p className="text-base text-[#9ab0df] mb-4">{safeItem.description}</p>
+                </div>
+                <div className="mt-auto pt-4 border-t border-[var(--line)]">
+                    <p className="text-sm text-[#9ab0df]">
+                        <span className="font-semibold text-[#7ee9ff]">Role:</span> {safeItem.role}
+                    </p>
+                </div>
             </div>
         </motion.div>
     );
