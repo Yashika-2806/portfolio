@@ -88,6 +88,10 @@ label {
 .section-shell {
   position: relative;
   padding: clamp(4.5rem, 9vw, 7rem) 0;
+  background: rgba(7, 12, 24, 0.48);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .section-shell::before {
@@ -97,6 +101,15 @@ label {
   border: 1px solid rgba(140, 176, 255, 0.1);
   border-radius: 2.25rem;
   pointer-events: none;
+}
+
+.panel {
+  background: rgba(12, 21, 41, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 15px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 1.5rem;
 }
 
 @media (max-width: 768px) {

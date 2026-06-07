@@ -150,7 +150,7 @@ const CertificatePreview = ({ src, alt }) => {
                     <img
                         src={src}
                         alt={alt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain p-4"
                         onError={() => setHasError(true)}
                     />
                 )}
@@ -173,7 +173,7 @@ const CertificatePreview = ({ src, alt }) => {
                 <img
                     src={imageUrl}
                     alt={alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                 />
             ) : (
                 <div className="flex items-center gap-3 text-[#6a8dc7]">
@@ -205,9 +205,9 @@ const CertificateSection = ({ cert, index }) => {
                 href={safeCert.image ? encodeURI(safeCert.image) : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block panel rounded-[32px] overflow-hidden border border-[#1f324f] bg-[#040913]/90 shadow-[0_24px_70px_rgba(0,0,0,0.25)] transition hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(0,0,0,0.35)]"
+                className="block panel rounded-[32px] overflow-hidden border border-[#ffffff18] bg-[#040913]/55 backdrop-blur-xl shadow-[0_24px_70px_rgba(0,0,0,0.25)] transition hover:-translate-y-1 hover:shadow-[0_32px_80px_rgba(0,0,0,0.35)]"
             >
-                <div className="relative h-64 w-full overflow-hidden bg-[#0a1428]">
+                <div className="relative h-80 md:h-96 w-full overflow-hidden bg-[#0a1428]">
                     {safeCert.image ? (
                         <CertificatePreview src={safeCert.image} alt={safeCert.title} />
                     ) : (
