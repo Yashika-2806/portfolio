@@ -331,17 +331,9 @@
             ]
         },
         {
-            "title": "🏆 Smart City Hackathon - Top Finalist",
-            "description": "Competed in a city-level hackathon to build a civic-tech solution. Delivered a working prototype for improving urban services and placed among the top finalists.",
-            "date": "2024",
-            "images": [
-                "/images/certificate hackathon python.jpg"
-            ]
-        },
-        {
-            "title": "🚀 AI Innovation Hackathon",
-            "description": "Participated in an intensive hackathon focused on AI-driven automation solutions. Collaborated with a cross-functional team to design and demo an intelligent workflow assistant.",
-            "date": "2024",
+            "title": "🏆 First in 3 hours python hackathon",
+            "description": "Competed in a college level hackathon to solve complex problems.",
+            "date": "2023",
             "images": [
                 "/images/certificate hackathon python.jpg"
             ]
@@ -373,19 +365,12 @@
             ]
         },
         {
-            "title": "🎖️ 1st Position - IBM ICE Day Technical Poster",
-            "description": "Won among 80+ technical presentations. Research-based poster on distributed systems optimization. Defended complex ideas under scrutiny.",
+            "title": "🏆 1st Position & Top Score - IBM ICE Day",
+            "description": "Secured 1st position in Technical Poster Presentation among 80+ participants, defending complex ideas on distributed systems. Achieved Top Score (94/100) in Technical Quiz among 150+ competitors.",
             "date": "2024",
             "images": [
                 "/images/Poster1.jpg",
-                "/images/Poster2.jpeg"
-            ]
-        },
-        {
-            "title": "🏆 IBM ICE Day Technical Quiz - Top Score",
-            "description": "94/100 - Highest score among 150+ competitors. Algorithms, system design, databases. Fundamentals matter.",
-            "date": "2024",
-            "images": [
+                "/images/Poster2.jpeg",
                 "/images/certificate poster ibm.jpg"
             ]
         },
