@@ -10,7 +10,7 @@ const Achievements = ({ achievements }) => {
     return (
         <section id="achievements" className="section-shell">
             <SectionTitle>Honors & Achievements</SectionTitle>
-            <div className="mt-12 md:mt-20 max-w-5xl mx-auto space-y-16 md:space-y-20">
+            <div className="mt-12 md:mt-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 {safeAchievements.length > 0 ? safeAchievements.map((item, index) => (
                     <AchievementItem key={index} item={item} index={index} />
                 )) : (
@@ -59,7 +59,7 @@ const AchievementItem = ({ item, index }) => {
         >
             <div>
                 {/* Image Section */}
-                <div className="relative w-full min-h-[28rem] md:min-h-[34rem] overflow-hidden bg-[#03070f] group/slider flex items-center justify-center">
+                <div className="relative w-full h-80 md:h-[28rem] overflow-hidden bg-[#03070f] group/slider flex items-center justify-center">
                     {images.length > 0 ? (
                         <>
                             <AnimatePresence mode="wait">
