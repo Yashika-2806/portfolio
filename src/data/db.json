@@ -171,13 +171,15 @@
             "title": "Manthan",
             "description": "A project for brainstorming and idea generation.",
             "github": "#",
-            "demo": "#"
+            "demo": "#",
+            "imageUrl": "/images/Manthan project.png"
         },
         {
             "title": "Promptathon",
             "description": "A hackathon-style event focused on prompt engineering.",
             "github": "#",
-            "demo": "#"
+            "demo": "#",
+            "imageUrl": "/images/Promptathon project.png"
         },
         {
             "title": "Movie and Song Recommendation",
