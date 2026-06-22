@@ -55,7 +55,7 @@ const ProjectCard = ({ project, onView }) => {
                 <img
                     src={safeProject.imageUrl}
                     alt={safeProject.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent" />
             </div>
